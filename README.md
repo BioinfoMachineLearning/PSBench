@@ -1,5 +1,5 @@
 # PSBench
-A large and comprehensive benchmark for estimating the accuracy of protein complex structural models (EMA)
+A comprehensive benchmark for estimating the accuracy of protein complex structural models (EMA)
 
 ## I. Four datasets for training and testing EMA methods
 
