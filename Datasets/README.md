@@ -1,5 +1,5 @@
 # PSBench
-PSBench consists of 4 complementary datasets. For each dataset, we provide 10 unique quality scores:
+For each of the four datasets, we provide 10 unique quality scores:
 ### Global Quality Scores:
 - tmscore (4 variants)
 - rmsd
@@ -17,7 +17,8 @@ PSBench consists of 4 complementary datasets. For each dataset, we provide 10 un
 - dockq_wave
 
 
-### Additional Input Features for Structural Models in CASP15_inhouse_dataset and CASP16_inhouse_dataset:
+### Additional Input Features for Structural Models in CASP15_inhouse_dataset and CASP16_inhouse_dataset
+For the two inhouse datasets, we also provide the following AlphaFold features:
 - type
 - afm_confidence_score
 - af3_ranking_score
