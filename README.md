@@ -1,6 +1,6 @@
 # PSBench
 A comprehensive benchmark for estimating the accuracy of protein complex structural models (EMA)
-![PSBench Pipeline](Datasets/imgs/pipeline.png)
+<!-- ![PSBench Pipeline](Datasets/imgs/pipeline.png) -->
 
 ## I. Four datasets for training and testing EMA methods
 PSBench consists of 4 complementary datasets:
