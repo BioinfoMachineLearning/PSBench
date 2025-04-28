@@ -1,5 +1,6 @@
 # PSBench
 A comprehensive benchmark for estimating the accuracy of protein complex structural models (EMA)
+![PSBench Pipeline](Datasets/imgs/pipeline.png)
 
 ## I. Four datasets for training and testing EMA methods
 PSBench consists of 4 complementary datasets:
@@ -10,31 +11,6 @@ PSBench consists of 4 complementary datasets:
 <details>
 For each of the four datasets, we provide 10 unique quality scores and a few AlphaFold features:
 
-<!-- ### Global Quality Scores:
-- tmscore (4 variants)
-- rmsd
-
-### Local Quality Scores:
-- lddt
-
-### Interface Quality Scores:
-- ics
-- ics_precision
-- ics_recall
-- ips
-- qs_global
-- qs_best
-- dockq_wave
-
-
-### Additional Input Features for Structural Models in CASP15_inhouse_dataset and CASP16_inhouse_dataset
-For the two inhouse datasets, we also provide the following AlphaFold features:
-- type
-- afm_confidence_score
-- af3_ranking_score
-- iptm
-- num_inter_pae
-- mpDockQ/pDockQ -->
 
 
 
