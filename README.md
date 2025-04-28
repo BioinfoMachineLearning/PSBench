@@ -77,7 +77,7 @@ Following are the prerequisites to generate the labels for new benchmark dataset
 - Native structure
 - Fasta file
 ### Tools
- - Openstructure Installation
+ - Openstructure
  - USalign
 
 <details>
@@ -90,7 +90,7 @@ Download the PSBench repository and cd into scripts
     cd scripts
 ```
 
-### Openstructure Installation
+#### Openstructure Installation (Need to run only once)
 ```bash
 docker pull registry.scicore.unibas.ch/schwede/openstructure:latest
 ```
@@ -101,7 +101,68 @@ Check the docker installation with
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
 
+#### Structure alignment and filtration (required for tmscore_usalign_aligned)
+Requires 6 arguments:
+- -f : path to the fasta file for the target
+- -pp : path to the predicted pdbs directory for the target
+- -np : path to the native pdb file for the target
+- -o : path to the output directory
+- -tmp : path to the temporary directory
+- -c : path to the clustalw binary (available in tools/clustalw1.83/clustalw)
+
+```bash
+python filter_pdb.py --f /path/to/fasta_file -pp /path/to/predicted_pdbs_directory -np /path/to/native_pdb_file -o /path/to/output_directory -tmp /path/to/temporary_directory -c /path/to/clustalw_binary_file
+```
+
+
+#### Run openstructure (required for ics, ics_precision, ics_recall, ips, qs_global, qs_best, lddt, rmsd, dockq_wave, mmalign_tmscore)
+Requires 3 arguments:
+- --indir : path to the folder containing predicted pdbs
+- --nativedir : path to the corresponding native pdb
+- --outdir : path to the output folder
+
+```bash
+python run_openstructure.py --indir /path/to/predicted_pdb_folder/ --nativedir /path/to/native_pdb_file --outdir /path/to/output_folder
+```
+
+#### Run USalign for original predicted structure and original native structure (required for tmscore_usalign)
+Requires 4 arguments:
+- --indir : path to the folder containing original predicted pdbs
+- --nativedir : path to the corresponding original native pdb
+- --outdir : path to the output folder
+- --usalign_program : path to the USalign binary (available at tools/USalign)
+
+```bash
+python run_usalign.py --indir /path/to/predicted_pdb_folder/ --nativedir /path/to/native_pdb_file --outdir /path/to/output_folder --usalign_program /path/to/USalign_binary
+```
+#### Run USalign for filtered predicted structure and filtered native structure (required for tmscore_usalign_aligned)
+Requires 4 arguments:
+- --indir : path to the folder containing filtered predicted pdbs
+- --nativedir : path to the corresponding filtered native pdb
+- --outdir : path to the output folder
+- --usalign_program : path to the USalign binary (available at tools/USalign)
+
+```bash
+python run_usalign.py --indir /path/to/predicted_pdb_folder/ --nativedir /path/to/native_pdb_file --outdir /path/to/output_folder --usalign_program /path/to/USalign_binary
+```
+
+#### Create a csv out of the results
+
+Requires 5 arguments:
+- -pp : path to the predicted pdbs directory for the target
+- -os : path to the openstructure results for the target
+- -tm_u : path to the tmscore_usalign results for the target
+- -tm_ua : path to the tmscore_usalign_aligned results for the target
+- -oc : path where the output csv is to be saved
+
+```bash
+python create_csv.py -pp /path/to/predicted_pdbs_directory -os /path/to/openstructure_results_directory/ -tm_u /path/to/tmscore_usalign_results_directory -tm_ua /path/to/tmscore_usalign_aligned_results_directory -oc /path/to/output_csv_file
+```
+
+
+
 </details>
+
 ## IV. Baseline EMA methods for comparison with a new EMA method
 
 ## Reference
