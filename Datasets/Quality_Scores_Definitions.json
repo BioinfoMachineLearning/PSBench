@@ -1,0 +1,65 @@
+{
+    "Global Quality Scores": {
+      "tmscore": {
+        "description": "The Template Modeling score (TM-score) measures structural similarity between a predicted structure and a reference structure, with higher values (above 0.8) indicating strong agreement.",
+        "variants": {
+          "tmscore_mmalign": "Computed using OpenStructure with the USalign plugin and parameters -mm 1 -ter 0, following the CASP16 evaluation protocol.",
+          "tmscore_usalign": "Calculated with the USalign program using parameters -ter 1 -TMscore 6, aligning with the CASP15 evaluation protocol.",
+          "tmscore_usalign_aligned": "Incorporates residue-residue correspondence via an in-house alignment and filtration script before applying USalign with the same parameters.",
+          "tmscore_usalign_aligned_v0": "An earlier version based on a prior alignment script, used for generating GATE EMA training labels and available only for the CASP15_inhouse_dataset."
+        }
+      },
+      "rmsd": {
+        "description": "The Root Mean Square Deviation (RMSD) measures the average distance between corresponding atoms in the model and target structures. Lower values indicate a more accurate structure."
+      }
+    },
+    "Local Quality Score": {
+      "lddt": {
+        "description": "Measures the agreement between inter-atomic distances in the model and the target structure, evaluating the accuracy of overall atomic arrangement."
+      }
+    },
+    "Interface Quality Scores": {
+      "ics": {
+        "description": "The Interface Contact Score (ICS) measures how accurately predicted residue contacts between protein chains match the true contacts in the target structure. It is a weighted average of F1-scores for each chain-chain interface."
+      },
+      "ics_precision": {
+        "description": "The Interface Contact Precision (ICS_precision) measures the precision of predicted residue contacts, focusing on accuracy."
+      },
+      "ics_recall": {
+        "description": "The Interface Contact Recall (ICS_recall) measures the recall of true residue contacts correctly predicted, focusing on coverage."
+      },
+      "ips": {
+        "description": "The Interface Patch Similarity (IPS) measures similarity between predicted and true interface residue contacts using the Jaccard coefficient."
+      },
+      "qs_global": {
+        "description": "The QS (global) score measures the fraction of correctly predicted interface contacts relative to the larger of total true or predicted contacts."
+      },
+      "qs_best": {
+        "description": "The QS (best) score measures the highest fraction of correctly predicted interface contacts for any single chain-chain interface."
+      },
+      "dockq_wave": {
+        "description": "The DockQ_wave score measures the weighted average of DockQ scores across all chain-chain interfaces, combining precision, recall, and Fnat."
+      }
+    },
+    "Additional Input Features (In-House Datasets Only)": {
+      "type": {
+        "description": "Determines whether the model was generated using AlphaFold2 or AlphaFold3. Available only for in-house datasets."
+      },
+      "afm_confidence_score": {
+        "description": "The AlphaFold-Multimer Confidence Score assesses multimeric protein structure confidence, calculated differently for AlphaFold2 and AlphaFold3."
+      },
+      "af3_ranking_score": {
+        "description": "The AlphaFold3 Ranking Score as provided by the AlphaFold3 program. Available only for CASP16_inhouse_dataset."
+      },
+      "iptm": {
+        "description": "The Interface Predicted Template Modeling score evaluates the predicted accuracy of relative positioning of subunits within a protein complex."
+      },
+      "num_inter_pae": {
+        "description": "Number of inter-chain predicted aligned errors less than 5 Å."
+      },
+      "mpDockQ_pDockQ": {
+        "description": "Multiple-interface predicted DockQ for multimers (mpDockQ) or predicted DockQ for dimers (pDockQ)."
+      }
+    }
+  }
+  
