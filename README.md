@@ -64,8 +64,8 @@ python evaluate_QA.py \
 |------------------------|-------------|
 | `--indir`              | Directory with prediction CSV files |
 | `--nativedir`          | Directory with native score CSV files |
-| `--field`              | (Optional) Score column to evaluate. If omitted, all columns from column 3 onward are evaluated |
-| `--native_score_field` | Column name of native score. Default is `usalign_score` |
+| `--field`              | (Optional) Score column to evaluate. If omitted, all columns from column 2 onward are evaluated, assuming 'model' is column 1 |
+| `--native_score_field` | Column name of native score. Default is `usalign_tmscore` |
 
 ### Input File Format
 
