@@ -28,7 +28,7 @@ def process_target(target, group_id, args, native_df):
     if pred_df.empty:
         return ["0", "0", str(np.max(true_tmscores)), "0.5"]
     
-    pred_df = pred_df.sort_values(by=[group_id], ascending=args.ascending).reset_index(drop=True)
+    pred_df = pred_df.sort_values(by=[group_id], ascending=False).reset_index(drop=True)
     scores_filt, scores_true = [], []
     
     for i, row in pred_df.iterrows():
@@ -58,8 +58,7 @@ def main():
     parser.add_argument('--indir', type=str, required=True)
     parser.add_argument('--nativedir', type=str, required=True)
     parser.add_argument('--field', type=str, required=False)
-    parser.add_argument('--ascending', type=bool, default=False, required=False)
-    parser.add_argument('--native_score_field', type=str, default="usalign_score", required=False)
+    parser.add_argument('--native_score_field', type=str, default="usalign_tmscore", required=False)
     args = parser.parse_args()
     
     scorefile = os.path.join(args.indir, os.listdir(args.indir)[0])
