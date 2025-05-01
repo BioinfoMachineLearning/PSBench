@@ -58,7 +58,7 @@ def main():
     parser.add_argument('--indir', type=str, required=True)
     parser.add_argument('--nativedir', type=str, required=True)
     parser.add_argument('--field', type=str, required=False)
-    parser.add_argument('--native_score_field', type=str, default="usalign_tmscore", required=False)
+    parser.add_argument('--native_score_field', type=str, default="tmscore_usalign", required=False)
     args = parser.parse_args()
     
     scorefile = os.path.join(args.indir, os.listdir(args.indir)[0])
