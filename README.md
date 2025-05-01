@@ -137,6 +137,11 @@ Example
 ```
 python generate_labels.py --fasta /path/to/H1204.fasta --indir /directory/to/H1204_predicted_models/ --nativedir /path/to/H1204_native.pdb --outdir /path/to/output/directory/ --usalign_program /path/to/USalign --clustalw_program /path/to/clustalw1.83/clustalw
 ```
+Result folder will have following:
+- filtered_pdbs : directory where filtered predicted and native structures are saved
+- H1204.csv : CSV containing the labels for each model
+- results : directory where outputs of OpenStructure and USalign runs are saved
+- temp : temporary directory for pdb filtration process
 
 ##### Generate labels for multiple targets in bulk:
 Run the generate_labels_bulk.sh
