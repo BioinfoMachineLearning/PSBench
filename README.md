@@ -204,7 +204,6 @@ Here are several established methods for Estimating Model Accuracy (EMA), with l
   A multi-model consensus method using average pairwise TM-scores (via MMalign).  
   🔗 GitHub: [MULTICOM_qa](https://github.com/BioinfoMachineLearning/MULTICOM_qa)  
   🔗 Simplified: [mmalign_pairwise.py](https://github.com/BioinfoMachineLearning/gate/blob/main/gate/feature/mmalign_pairwise.py)
-"""
 
 
 ## Reference
