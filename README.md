@@ -131,7 +131,6 @@ Requires 6 arguments:
 - --outdir : path to the output directory
 - --usalign_program : path to the USalign binary (available at tools/USalign)
 - --clustalw_program : path to the clustalw binary (available at tools/clustalw1.83/clustalw)
-- -c : path to the clustalw binary (available at tools/clustalw1.83/clustalw)
 
 Example
 
