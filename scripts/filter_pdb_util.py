@@ -440,9 +440,9 @@ def align_and_filter_residues(clustalw_program, casp_seq, native_seq_res, pdb_se
         clustalw_program, casp_seq, native_seq_res['sequence'], pdb_seq_res['sequence'], 
         f"{pred_name}_{chain_id}.fasta", model_workdir
     )
-    print(casp_align_seq)
-    print(native_align_seq)
-    print(pdb_align_seq)
+    # print(casp_align_seq)
+    # print(native_align_seq)
+    # print(pdb_align_seq)
     # Identify positions with gaps in CASP or native alignments
     index_casp_temp = list(find_all(casp_align_seq, '-'))
     index_native_temp = list(find_all(native_align_seq, '-'))
@@ -524,7 +524,7 @@ def reindex_pdb_files(true_pdb_file, pred_pdb_file, model_workdir, targetname, c
     # Map the predicted residue indices to the native residue indices
     # This step aligns the predicted indices with the corresponding native indices
     residue_mapping = {pred_idx: native_idx for pred_idx, native_idx in zip(pdb_indices_keep, native_indices_keep)}
-    print(residue_mapping) 
+    # print(residue_mapping) 
     # Reindex the predicted PDB file to follow the residue numbering from the native PDB
     pred_pdb_file_reindex_temp = f'{model_workdir}/{chain_id}_filtered.pdb'
     reindex_pdb_file_with_mapping(pred_pdb_file, pred_pdb_file_reindex_temp, residue_mapping)

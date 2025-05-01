@@ -1,13 +1,12 @@
 import os, sys, argparse
 from multiprocessing import Pool
 from util import is_file, is_dir, makedir_if_not_exists
-from filter_pdb_callable import filter_and_reindex_pdbs
+from filter_pdb import filter_and_reindex_pdbs
 from util import extract_tmscore_file
 from tqdm import tqdm
 import json
 import csv
-# OpenStructure Docker execution command
-ema_exec = 'docker run --rm -v $(pwd):/home -v /bmlfast/pngkg/CASP16_DATASET_PAPER:/bmlfast/pngkg/CASP16_DATASET_PAPER/ -u $(id -u ${USER}):$(id -g ${USER}) registry.scicore.unibas.ch/schwede/openstructure:latest'
+
 
 def run_all_commands(params):
     usalign_program, ema_exec, pdb1, pdb2, usalign_outfile, openstructure_outfile = params
@@ -34,6 +33,8 @@ def run_usalign_only(params):
     print("Running USAlign (filtered):", cmd)
     os.system(cmd)
 
+
+
 def generate_csv(model_dir,result_dir,output_csv_path):
     content = [["model_name","ics","ics_precision","ics_recall","ips","qs_global","qs_best","lddt","tmscore_mmalign","rmsd","dockq_wave","tmscore_usalign","tmscore_usalign_aligned"]]
     for model in tqdm(os.listdir(model_dir)):
@@ -42,9 +43,17 @@ def generate_csv(model_dir,result_dir,output_csv_path):
         tmscore_usalign_path = os.path.join(result_dir,f'{model.split(".")[0]}.pdb_usalign_out')
         tmscore_usalign_aligned_path = os.path.join(result_dir,f'{model.split(".")[0]}.pdb_filt_usalign_out')
         
-        if not os.path.exists(openstructure_path) or not os.path.exists(tmscore_usalign_path) or not os.path.exists(tmscore_usalign_aligned_path):
-            print("Incomplete data")
+        # if not os.path.exists(openstructure_path) or not os.path.exists(tmscore_usalign_path) or not os.path.exists(tmscore_usalign_aligned_path):
+        #     print("Incomplete data")
+        #     continue
+        if not is_file(openstructure_path):
+            print(f"OpenStructure output file {openstructure_path} does not exist")
             continue
+        if not is_file(tmscore_usalign_path):
+            print(f"USalign output file {tmscore_usalign_path} does not exist")
+            continue
+        if not is_file(tmscore_usalign_aligned_path):
+            print(f"USalign output file {tmscore_usalign_aligned_path} does not exist")
 
         with open(openstructure_path,"r") as f:
             openstructure_data = json.load(f)
@@ -86,16 +95,25 @@ if __name__ == '__main__':
     parser.add_argument('--nproc', type=int, default=10, help="Number of parallel processes")
 
     args = parser.parse_args()
-
-    
-
     targetname = os.path.basename(os.path.normpath(args.indir))
+    native_pdb = args.nativedir
     outdir = os.path.join(args.outdir, targetname)
     output_csv_path = os.path.join(outdir,f"{targetname}.csv")
     makedir_if_not_exists(outdir)
 
-    native_pdb = args.nativedir
-    # native_pdb_filt = args.nativedir_filt if args.nativedir_filt else None
+    ema_exec = (
+        'docker run --rm -v $(pwd):/home '
+        f'-v {args.indir}:{args.indir} '
+        f'-v {args.nativedir}:{args.nativedir} '
+        f'-v {args.outdir}:{args.outdir} '
+        '-u $(id -u $USER):$(id -g $USER) '
+        'registry.scicore.unibas.ch/schwede/openstructure:latest'
+        )
+
+    # print(ema_exec)
+
+    
+
 
     ##run filtration
     tempdir = os.path.join(outdir,"temp")
@@ -114,10 +132,12 @@ if __name__ == '__main__':
         infile = os.path.join(args.indir, model)
         usalign_outfile = os.path.join(outdir, f"{model}_usalign_out")
         openstruct_outfile = os.path.join(outdir, f"{model}_openstructure_out")
+        if os.path.exists(openstruct_outfile) and os.path.exists(usalign_outfile):
+            continue
 
         process_list.append([args.usalign_program, ema_exec, infile, native_pdb, usalign_outfile, openstruct_outfile])
 
-    # === Run only USAlign on filtered (if provided) ===
+    #Run only USAlign on filtered
     filt_process_list = []
     if indir_filt and native_pdb_filt:
         targetname_filt = os.path.basename(os.path.normpath(indir_filt))
@@ -127,6 +147,8 @@ if __name__ == '__main__':
         for model in os.listdir(indir_filt):
             infile = os.path.join(indir_filt, model)
             usalign_outfile = os.path.join(outdir_filt, f"{model}_filt_usalign_out")
+            if os.path.exists(usalign_outfile):
+                continue
             filt_process_list.append([args.usalign_program, infile, native_pdb_filt, usalign_outfile])
 
     # Run USAlign + OpenStructure jobs

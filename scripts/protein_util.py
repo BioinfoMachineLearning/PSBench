@@ -169,34 +169,3 @@ def get_stoichiometry_from_fasta(chain_id_map, sequences):
         stoichiometry += f"{chain_id}{count}"
     return stoichiometry
 
-def extract_tmscore_file(tmscore_file):
-    """
-    Extracts TM-scores from a given US-align output file.
-
-    Args:
-        file_path (str): Path to the US-align output file.
-
-    Returns:
-        dict: A dictionary containing TM-scores normalized by Structure_1 and Structure_2.
-              Example: {"Structure_1": 0.99536, "Structure_2": 0.99536}
-    """
-    
-    try:
-        with open(tmscore_file, 'r') as file:
-            for line in file:
-                # Check for TM-score normalized by Structure_1, ie: predicted structure
-                if "TM-score=" in line and "normalized by length of Structure_1" in line:
-                    tmscores_1 = float(line.split('=')[1].split()[0])
-                
-                # Check for TM-score normalized by Structure_2 ie: native structure
-                elif "TM-score=" in line and "normalized by length of Structure_2" in line:
-                    tmscores_2 = float(line.split('=')[1].split()[0])
-
-        return(tmscores_2)
-    
-    except FileNotFoundError:
-        print(f"File not found: {tmscore_file}")
-        return "NA"
-    except Exception as e:
-        print(f"An error occurred: {e}")
-        return "NA"
