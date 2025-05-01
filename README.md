@@ -181,4 +181,30 @@ python generate_af_features.py --fasta /path/to/H1204.fasta --pdbdir /directory/
 
 ## IV. Baseline EMA methods for comparison with a new EMA method
 
+Here are several established methods for Estimating Model Accuracy (EMA), with links to their source code:
+
+- **GATE** [[Liu et al., 2025]](https://github.com/BioinfoMachineLearning/gate):  
+  A multi-model EMA approach leveraging graph transformers on pairwise similarity graphs. Combines single-model and multi-model features for TM-score prediction.  
+  🔗 GitHub: [https://github.com/BioinfoMachineLearning/gate](https://github.com/BioinfoMachineLearning/gate)  
+  - **GATE-AFM**: An enhanced version of GATE that incorporates AlphaFold-Multimer features as node features.
+
+- **DProQA** [[Chen et al., 2023]](https://github.com/jianlin-cheng/DProQA):  
+  A single-model EMA method using a Gated Graph Transformer. Targets interface quality prediction (e.g., DockQ scores) using KNN-based structural graphs.  
+  🔗 GitHub: [https://github.com/jianlin-cheng/DProQA](https://github.com/jianlin-cheng/DProQA)
+
+- **VoroMQA-dark, VoroIF-GNN-score, VoroIF-GNN-pCAD-score** [[Olechnovič et al., 2023]](https://github.com/kliment-olechnovic/ftdmp):  
+  Interface-focused EMA methods using Voronoi-based atomic contact areas and GNNs.  
+  🔗 GitHub: [https://github.com/kliment-olechnovic/ftdmp](https://github.com/kliment-olechnovic/ftdmp)
+
+- **GCPNet-EMA** [[Morehead et al., 2024]](https://github.com/BioinfoMachineLearning/GCPNet-EMA):  
+  A 3D graph neural network predicting lDDT and global accuracy from atomic point clouds. Adaptable to protein complex structures.  
+  🔗 GitHub: [https://github.com/BioinfoMachineLearning/GCPNet-EMA](https://github.com/BioinfoMachineLearning/GCPNet-EMA)
+
+- **PSS (Pairwise Similarity Score)** [[Roy et al., 2023]](https://github.com/BioinfoMachineLearning/MULTICOM_qa):  
+  A multi-model consensus method using average pairwise TM-scores (via MMalign).  
+  🔗 GitHub: [MULTICOM_qa](https://github.com/BioinfoMachineLearning/MULTICOM_qa)  
+  🔗 Simplified: [mmalign_pairwise.py](https://github.com/BioinfoMachineLearning/gate/blob/main/gate/feature/mmalign_pairwise.py)
+"""
+
+
 ## Reference
