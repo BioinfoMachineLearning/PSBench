@@ -21,26 +21,27 @@ PSBench consists of 4 complementary large datasets and two additional subsets of
 ## The dataset directory structure
 
 ```text
-PSBench/
-├── CASP15_community_dataset/
-│   ├── CASP15_community_dataset_summary.tab
-│   ├── Fasta/
-│   ├── Predicted_Models/
-│   └── Quality_Scores/
-├── CASP15_inhouse_dataset/
-│   ├── CASP15_inhouse_dataset_summary.tab
-│   ├── AlphaFold_Features/
-│   ├── Fasta/
-│   ├── Predicted_Models/
-│   └── Quality_Scores/ 
-├── CASP15_inhouse_TOP5_dataset/
-│   ├── CASP15_inhouse_TOP5_dataset_summary.tab
-│   ├── AlphaFold_Features/
-│   ├── Fasta/
-│   └── Quality_Scores/ 
-├── CASP16_community_dataset/
-├── CASP16_inhouse_dataset/
-└── CASP16_inhouse_TOP5_dataset/
+📁 PSBench/
+├── 📁 CASP15_community_dataset/
+│   ├── 📄 CASP15_community_dataset_summary.tab
+│   ├── 📁 Fasta/
+│   ├── 📁 Predicted_Models/
+│   └── 📁 Quality_Scores/
+├── 📁 CASP15_inhouse_dataset/
+│   ├── 📄 CASP15_inhouse_dataset_summary.tab
+│   ├── 📁 AlphaFold_Features/
+│   ├── 📁 Fasta/
+│   ├── 📁 Predicted_Models/
+│   └── 📁 Quality_Scores/
+├── 📁 CASP15_inhouse_TOP5_dataset/
+│   ├── 📄 CASP15_inhouse_TOP5_dataset_summary.tab
+│   ├── 📁 AlphaFold_Features/
+│   ├── 📁 Fasta/
+│   └── 📁 Quality_Scores/
+├── 📁 CASP16_community_dataset/
+├── 📁 CASP16_inhouse_dataset/
+└── 📁 CASP16_inhouse_TOP5_dataset/
+
 ```
 
 Note: The TOP5 subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy and optimize storage. These models are identical to those already available in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/).
