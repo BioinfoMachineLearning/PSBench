@@ -6,13 +6,40 @@ PSBench datasets are publicly available at https://dataverse.harvard.edu/preview
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
 
+## PSBench Installation
+
+### Clone the repository
+```
+git clone https://github.com/BioinfoMachineLearning/PSBench.git
+cd PSBench/ 
+```
+### Setup the environment
+```
+#create the PSBench environment
+conda create -n PSBench python=3.10.12
+
+# activate PSBench
+conda activate PSBench
+
+#install the required packages
+pip install -r requirements.txt
+```
+### Setup and test OpenStructure
+```
+# install OpenStructure
+docker pull registry.scicore.unibas.ch/schwede/openstructure:latest
+
+# test OpenStructure installation 
+docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
+```
+
 ## I. Four datasets for training and testing EMA methods
 PSBench consists of 4 complementary large datasets and two additional subsets of inhouse datasets which were used by GATE:
 - 1. CASP15_inhouse_dataset
-- 2. CASP15_inhouse_TOP5_dataset (subset)
+- 2. CASP15_inhouse_TOP5_dataset (subset of CASP15_inhouse_dataset)
 - 3. CASP15_community_dataset
 - 4. CASP16_inhouse_dataset
-- 5. CASP16_inhouse_TOP5_dataset (subset)
+- 5. CASP16_inhouse_TOP5_dataset (subset of CASP16_inhouse_dataset)
 - 6. CASP16_community_dataset
 
 
@@ -84,7 +111,8 @@ This script evaluates Pearson correlation, Spearman correlation, top-1 loss, and
 ### Example command:
 
 ```bash
-python scripts/evaluate_QA.py \
+cd scripts
+python evaluate_QA.py \
   --indir ./predictions \
   --nativedir ./native_scores \
   --native_score_field tmscore_usalign
@@ -99,7 +127,7 @@ python scripts/evaluate_QA.py \
 | `--native_score_field` | Column name of native score. Default is `tmscore_usalign` |
 | `--field`              | (Optional) Score column to evaluate. If omitted, all columns from column 2 onward are evaluated, assuming 'model' is column 1 |
 
-### Prediction files (CSV format)
+### Prediction files (CSV format):
 Each file should contain:
 ```
 model,EMA_score1,EMA_score2,...
@@ -107,7 +135,7 @@ model1,0.85,0.79
 model2,0.67,0.71
 ```
 
-### Output
+### Output:
 
 The script prints:
 - The evaluated fields (EMA score names)
@@ -122,20 +150,21 @@ The script prints:
 Following are the prerequisites to generate the labels for new benchmark dataset:
 ### Data:
 - Predicted structures
-- Native structure
-- Fasta file
-### Tools
- - Openstructure
+- Native structures
+- Fasta files
+### Tools (Downloaded or installed in the PSBench installation section)
+ - OpenStructure
  - USalign
+ - Clustalw
 
-<details>
+<!-- <details>
 
 Download the PSBench repository and cd into scripts
 
 ```bash
-    git clone https://github.com/BioinfoMachineLearning/PSBench.git
-    cd PSBench
-    cd scripts
+git clone https://github.com/BioinfoMachineLearning/PSBench.git
+cd PSBench
+cd scripts
 ```
 
 #### Openstructure Installation (Need to run only once)
@@ -145,65 +174,89 @@ docker pull registry.scicore.unibas.ch/schwede/openstructure:latest
 
 Check the docker installation with 
 ```bash
-# should print the latest version of openstructure 
+# print the installed latest version of openstructure 
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
+``` -->
+
+#### Quality Scores Generation
+
+#### Run the generate_quality_scores.sh pipeline
+
+#### Required Arguments:
+
+| Argument         | Description                                                                                      |
+|------------------|--------------------------------------------------------------------------------------------------|
+| `--fasta_dir`     | Path to the directory containing FASTA files (named as `<target>.fasta`)                        |
+| `--predicted_dir` | Path to the base directory containing predicted models (subdirectory per target)                |
+| `--native_dir`    | Path to the directory containing native PDB files (named as `<target>.pdb`)                     |
+| `--outdir`        | Path to the base output directory for results                                                   |
+| `--usalign`       | Path to the USalign binary (e.g., `tools/USalign`)                                              |
+| `--clustalw`      | Path to the ClustalW binary (e.g., `tools/clustalw1.83/clustalw`)                               |
+| `--targets`       | Space-separated list of target names to process (e.g., `H1204 H1213`)                           |
+
+For each target (e.g. `H1204`), ensure the following:
+
+- FASTA file: `/path/to/PSBench/Fasta/H1204.fasta`
+- Predicted models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
+- Native PDB: `/path/to/PSBench/native_models/H1204.pdb`
+
+#### Example:
+
+```bash
+sh generate_quality_scores.sh \
+  --fasta_dir /path/to/PSBench/Fasta/ \
+  --predicted_dir /path/to/PSBench/predicted_models/ \
+  --native_dir /path/to/PSBench/native_models/ \
+  --outdir /path/to/PSBench/output/ \
+  --usalign /path/to/PSBench/scripts/tools/USalign \
+  --clustalw /path/to/PSBench/scripts/tools/clustalw1.83/clustalw \
+  --targets H1204 H1213
+
 ```
+#### Output:
+Output folder will have subdirectories for each target (eg. /path/to/PSBench/output/ will have H1204/ H1213/). Each target subdirectory will have the following:
 
-#### Run the generate_labels pipeline
+- filtered_pdbs/ : directory where filtered predicted and native structures are saved
+- H1204_quality_scores.csv : CSV containing the labels for each model
+- results/ : directory where outputs of OpenStructure and USalign runs are saved
+- temp/ : temporary directory for pdb filtration process
 
-Requires 6 arguments:
-- --fasta : path to the fasta file for the target
-- --indir : path to the predicted pdbs directory for the target
-- --nativedir : path to the native pdb file for the target
-- --outdir : path to the output directory
-- --usalign_program : path to the USalign binary (available at tools/USalign)
-- --clustalw_program : path to the clustalw binary (available at tools/clustalw1.83/clustalw)
 
-Example
-
-```
-python generate_labels.py --fasta /path/to/H1204.fasta --indir /directory/to/H1204_predicted_models/ --nativedir /path/to/H1204_native.pdb --outdir /path/to/output/directory/ --usalign_program /path/to/USalign --clustalw_program /path/to/clustalw1.83/clustalw
-```
-Result folder will have following:
-- filtered_pdbs : directory where filtered predicted and native structures are saved
-- H1204.csv : CSV containing the labels for each model
-- results : directory where outputs of OpenStructure and USalign runs are saved
-- temp : temporary directory for pdb filtration process
-
-##### Generate labels for multiple targets in bulk:
-Run the generate_labels_bulk.sh
-
-Requires 7 arguments. Targets should be listed at the end separated by space.
-
-Example: for each target (e.g. `H1204`), ensure the following:
-
-- FASTA file: `/directory/to/fasta_files/H1204.fasta`
-- Predicted models: `/directory/to/predicted_pdb_files/H1204/*.pdb`
-- Native PDB: `/directory/to/native_pdb_files/H1204.pdb`
-
-```
-sh generate_labels_bulk.sh \
-  /directory/to/fasta_files \
-  /directory/to/predicted_pdb_files \
-  /directory/to/native_pdb_files \
-  /directory/to/output_folder \
-  /path/to/USalign_binary \
-  /path/to/clustalw_binary \
-  H1202 H1204 T1257
-```
 
 #### Optional : Generate AlphaFold features when available
 
-Requires 4 arguments:
-- --fasta : path to the fasta file for the target
-- --pdbdir : path to the predicted pdbs directory for the target
-- --nativedir : path to the AlphaFold generated pickle files for the predicted pdbs for the target (make sure the names are identical for files except the extensions)
-- --outcsv : path to the output csv
+<details>
 
-Example
+#### Run the generate_af_features.sh pipeline
+
+##### Required Arguments:
+| Argument       | Description                                                                                      |
+|----------------|--------------------------------------------------------------------------------------------------|
+| `--fasta_dir`  | Directory containing FASTA files for each target (e.g., `/path/to/fasta`)                        |
+| `--pdb_dir`    | Directory containing predicted PDB model subfolders (e.g., `/path/to/pdbs`)                      |
+| `--pkl_dir`    | Directory containing AlphaFold pickle (.pkl) subfolders (e.g., `/path/to/pkls`)                 |
+| `--outdir` | Directory where output CSV files will be saved (e.g., `/path/to/outdir`)                    |
+| `--targets`    | List of target names (e.g., `H1204 H1213`)                                                       |
+
+For each target (e.g. `H1204`), ensure the following:
+
+- FASTA file: `/path/to/PSBench/Fasta/H1204.fasta`
+- Predicted models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
+- Pickle files: `/path/to/PSBench/predicted_models_pickles/H1204/*.pkl`
+
+#### Example:
+
+```bash
+sh generate_af_features.sh \
+  --fasta_dir /path/to/PSBench/Fasta/ \
+  --predicted_dir /path/to/PSBench/predicted_models/ \
+  --pkl_dir /path/to/PSBench/predicted_models_pickles/ \
+  --outdir /path/to/PSBench/output/ \
+  --targets H1204 H1213
 ```
-python generate_af_features.py --fasta /path/to/H1204.fasta --pdbdir /directory/to/H1204_predicted_models/ --pkldir /directory/to/H1204_pkl_files/ --outcsv /path/to/H1204_af_features.csv
-```
+#### Output:
+Output folder will have target_af_features.csv for each target (eg. H1204_af_features.csv).
+
 </details>
 
 ## IV. Baseline EMA methods for comparison with a new EMA method
