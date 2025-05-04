@@ -1,0 +1,5 @@
+pandas==2.2.3
+tqdm==4.67.1
+numpy==2.2.0
+absl-py==2.1.0
+biopython==1.84

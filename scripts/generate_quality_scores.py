@@ -87,24 +87,27 @@ def generate_csv(model_dir,result_dir,output_csv_path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--fasta', type=is_file, required=True, help="Directory of Fasta file")
-    parser.add_argument('--indir', type=is_dir, required=True, help="Directory of original model PDBs")
-    parser.add_argument('--nativedir', type=is_file, required=True, help="Native PDB for original models")
-    parser.add_argument('--outdir', type=is_dir, required=True, help="Main output directory")
+    parser.add_argument('--predicted_dir', type=is_dir, required=True, help="Directory of original model PDBs")
+    parser.add_argument('--native_dir', type=is_file, required=True, help="Native PDB for original models")
+    parser.add_argument('--outdir', required=True, help="Main output directory")
     parser.add_argument('--usalign_program', type=is_file, required=True, help="Path to USAlign executable")
     parser.add_argument('--clustalw_program', type=is_file, required=True, help="Path to USAlign executable")
     parser.add_argument('--nproc', type=int, default=10, help="Number of parallel processes")
 
     args = parser.parse_args()
-    targetname = os.path.basename(os.path.normpath(args.indir))
-    native_pdb = args.nativedir
+    targetname = os.path.basename(os.path.normpath(args.predicted_dir))
+    native_pdb = args.native_dir
+    makedir_if_not_exists(args.outdir)
     outdir = os.path.join(args.outdir, targetname)
-    output_csv_path = os.path.join(outdir,f"{targetname}.csv")
     makedir_if_not_exists(outdir)
+    # make
+    output_csv_path = os.path.join(outdir,f"{targetname}_quality_scores.csv")
+    
 
     ema_exec = (
         'docker run --rm -v $(pwd):/home '
-        f'-v {args.indir}:{args.indir} '
-        f'-v {args.nativedir}:{args.nativedir} '
+        f'-v {args.predicted_dir}:{args.predicted_dir} '
+        f'-v {args.native_dir}:{args.native_dir} '
         f'-v {args.outdir}:{args.outdir} '
         '-u $(id -u $USER):$(id -g $USER) '
         'registry.scicore.unibas.ch/schwede/openstructure:latest'
@@ -120,16 +123,16 @@ if __name__ == '__main__':
     makedir_if_not_exists(tempdir)
     filtered_path = os.path.join(outdir,'filtered_pdbs',targetname)
     makedir_if_not_exists(filtered_path)
-    filter_and_reindex_pdbs(args.fasta,args.indir,args.nativedir,filtered_path,tempdir,args.clustalw_program)
-    indir_filt = os.path.join(filtered_path,"pred_filtered",targetname)
+    filter_and_reindex_pdbs(args.fasta,args.predicted_dir,args.native_dir,filtered_path,tempdir,args.clustalw_program)
+    predicted_dir_filt = os.path.join(filtered_path,"pred_filtered",targetname)
     native_pdb_filt = os.path.join(filtered_path,"pdb_filtered",f"{targetname}.pdb")
 
     # run OpenStructure and USalign
     outdir = os.path.join(outdir, "results")
     # === Run USAlign + OpenStructure on original ===
     process_list = []
-    for model in os.listdir(args.indir):
-        infile = os.path.join(args.indir, model)
+    for model in os.listdir(args.predicted_dir):
+        infile = os.path.join(args.predicted_dir, model)
         usalign_outfile = os.path.join(outdir, f"{model}_usalign_out")
         openstruct_outfile = os.path.join(outdir, f"{model}_openstructure_out")
         if os.path.exists(openstruct_outfile) and os.path.exists(usalign_outfile):
@@ -139,13 +142,13 @@ if __name__ == '__main__':
 
     #Run only USAlign on filtered
     filt_process_list = []
-    if indir_filt and native_pdb_filt:
-        targetname_filt = os.path.basename(os.path.normpath(indir_filt))
+    if predicted_dir_filt and native_pdb_filt:
+        targetname_filt = os.path.basename(os.path.normpath(predicted_dir_filt))
         outdir_filt = outdir
         makedir_if_not_exists(outdir_filt)
 
-        for model in os.listdir(indir_filt):
-            infile = os.path.join(indir_filt, model)
+        for model in os.listdir(predicted_dir_filt):
+            infile = os.path.join(predicted_dir_filt, model)
             usalign_outfile = os.path.join(outdir_filt, f"{model}_filt_usalign_out")
             if os.path.exists(usalign_outfile):
                 continue
@@ -165,5 +168,5 @@ if __name__ == '__main__':
         pool.join()
     
     
-    generate_csv(args.indir,outdir,output_csv_path)
+    generate_csv(args.predicted_dir,outdir,output_csv_path)
 

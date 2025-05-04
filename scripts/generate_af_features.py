@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 from tqdm import tqdm
 import argparse
-from util import is_dir,is_file
+from util import is_dir,is_file,makedir_if_not_exists
 from multiprocessing import Pool, cpu_count
 
 def extract_scores(pdb_path, pkl_path, fasta_path, pae_cutoff=5.0):
@@ -151,9 +151,12 @@ def generate_af_features(fasta_path,pdb_dir, pkl_dir, output_csv, n_workers=None
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--fasta', type=is_file, required=True, help="Directory of Fasta file")
-    parser.add_argument('--pdbdir', type=is_dir, required=True, help="Directory of original model PDBs")
-    parser.add_argument('--pkldir', type=is_dir, required=True, help="Directory of original model pkls")
-    parser.add_argument('--outcsv', required=True, help="Path to output csv")
+    parser.add_argument('--predicted_dir', type=is_dir, required=True, help="Directory of original model PDBs")
+    parser.add_argument('--pkl_dir', type=is_dir, required=True, help="Directory of original model pkls")
+    parser.add_argument('--outdir', required=True, help="Path to output csv")
 
     args = parser.parse_args()
-    generate_af_features(args.fasta,args.pdbdir,args.pkldir,args.outcsv)
+    makedir_if_not_exists(args.outdir)
+    targetname = os.path.basename(os.path.normpath(args.predicted_dir))
+    outcsv_path = os.path.join(args.outdir,f"{targetname}_af_features.csv")
+    generate_af_features(args.fasta,args.predicted_dir,args.pkl_dir,outcsv_path)
