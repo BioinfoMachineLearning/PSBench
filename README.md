@@ -2,14 +2,51 @@
 A comprehensive benchmark for estimating the accuracy of protein complex structural models (EMA)
 ![PSBench Pipeline, Methods and Metrics](Datasets/imgs/pipeline_methods_metrics.png)
 
-## I. Four datasets for training and testing EMA methods
-PSBench consists of 4 complementary datasets:
-- 1. CASP15_inhouse_dataset
-- 2. CASP15_community_dataset
-- 3. CASP16_inhouse_dataset
-- 4. CASP16_community_dataset
+PSBench datasets are publicly available at https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
 
-For each of the four datasets, we provide 10 unique quality scores and a few AlphaFold features:
+DOI : https://doi.org/10.7910/DVN/75SZ1U
+
+## I. Four datasets for training and testing EMA methods
+PSBench consists of 4 complementary large datasets and two additional subsets of inhouse datasets which were used by GATE:
+- 1. CASP15_inhouse_dataset
+- 2. CASP15_inhouse_TOP5_dataset (subset)
+- 3. CASP15_community_dataset
+- 4. CASP16_inhouse_dataset
+- 5. CASP16_inhouse_TOP5_dataset (subset)
+- 6. CASP16_community_dataset
+
+
+
+
+## The dataset directory structure
+
+```text
+PSBench/
+├── CASP15_community_dataset/
+│   ├── CASP15_community_dataset_summary.tab
+│   ├── Fasta/
+│   ├── Predicted_Models/
+│   └── Quality_Scores/
+├── CASP15_inhouse_dataset/
+│   ├── CASP15_inhouse_dataset_summary.tab
+│   ├── AlphaFold_Features/
+│   ├── Fasta/
+│   ├── Predicted_Models/
+│   └── Quality_Scores/ 
+├── CASP15_inhouse_TOP5_dataset/
+│   ├── CASP15_inhouse_TOP5_dataset_summary.tab
+│   ├── AlphaFold_Features/
+│   ├── Fasta/
+│   └── Quality_Scores/ 
+├── CASP16_community_dataset/
+├── CASP16_inhouse_dataset/
+└── CASP16_inhouse_TOP5_dataset/
+```
+
+Note: The TOP5 subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy and optimize storage. These models are identical to those already available in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/).
+
+
+For each of the datasets, we provide 10 unique quality scores and a few AlphaFold features:
 
 | Category | Quality scores / features |
 |:---------|:-------------------|
