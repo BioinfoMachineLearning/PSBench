@@ -3,9 +3,10 @@ A comprehensive benchmark for estimating the accuracy of protein complex structu
 ![PSBench Pipeline, Methods and Metrics](Datasets/imgs/pipeline_methods_metrics.png)
 
 PSBench datasets are publicly available at https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
+(need to change after publishing)
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
-
+(might change after publishing)
 ## PSBench Installation
 
 ### Clone the repository
@@ -22,7 +23,7 @@ conda create -n PSBench python=3.10.12
 conda activate PSBench
 
 #install the required packages
-pip install -r requirements.txt
+pip install -r scripts/requirements.txt
 ```
 ### Setup and test OpenStructure
 ```
@@ -47,6 +48,8 @@ PSBench consists of 4 complementary large datasets and two additional subsets of
 
 ```text
 📁 PSBench/
+├── 📄 extract.sh
+├── 📄 README.md
 ├── 📁 CASP15_community_dataset/
 │   ├── 📄 CASP15_community_dataset_summary.tab
 │   ├── 📁 Fasta/
@@ -203,6 +206,7 @@ For each target (e.g. `H1204`), ensure the following:
 #### Example:
 
 ```bash
+cd scripts/
 sh generate_quality_scores.sh \
   --fasta_dir /path/to/PSBench/Fasta/ \
   --predicted_dir /path/to/PSBench/predicted_models/ \
@@ -217,7 +221,7 @@ sh generate_quality_scores.sh \
 Output folder will have subdirectories for each target (eg. /path/to/PSBench/output/ will have H1204/ H1213/). Each target subdirectory will have the following:
 
 - filtered_pdbs/ : directory where filtered predicted and native structures are saved
-- H1204_quality_scores.csv : CSV containing the labels for each model
+- H1204_quality_scores.csv : CSV containing the quuality scores for each model of the target
 - results/ : directory where outputs of OpenStructure and USalign runs are saved
 - temp/ : temporary directory for pdb filtration process
 
@@ -247,6 +251,7 @@ For each target (e.g. `H1204`), ensure the following:
 #### Example:
 
 ```bash
+cd scripts/
 sh generate_af_features.sh \
   --fasta_dir /path/to/PSBench/Fasta/ \
   --predicted_dir /path/to/PSBench/predicted_models/ \
