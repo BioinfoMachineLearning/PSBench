@@ -16,8 +16,6 @@ PSBench consists of 4 complementary large datasets and two additional subsets of
 - 6. CASP16_community_dataset
 
 
-
-
 ## The dataset directory structure
 
 ```text
