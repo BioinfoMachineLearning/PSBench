@@ -87,6 +87,7 @@ For each of the datasets, we provide 10 unique quality scores and a few AlphaFol
 For detailed explanations of each quality score and feature, please refer to [Quality_Scores_Definitions](Datasets/Quality_Scores_Definitions.json)
 
 <details>
+  
 For each figures below, **(a) Model count.** Number of models per target in the dataset. **(b) Score Distribution.** Box plots of each of six representative quality scores of the models for each target. **(c) Example.** Three representative models (worst, average, best) in terms of sum of the six representative quality scores for a target. Each model with two chains colored in blue and red is superimposed with the true structure in gray.
 
 ## i. CASP15_inhouse_dataset
