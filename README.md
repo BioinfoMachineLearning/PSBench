@@ -118,11 +118,10 @@ This script evaluates Pearson correlation, Spearman correlation, top-1 loss, and
 ### Example command:
 
 ```bash
-cd scripts
-python evaluate_QA.py \
-  --indir ./predictions \
+python scripts/evaluate_QA.py \
+  --indir ./Examples/Predictions \
   --nativedir ./native_scores \
-  --native_score_field tmscore_usalign
+  --native_score_field tmscore_usalign_aligned
 ```
 
 ### Arguments:
@@ -133,25 +132,41 @@ python evaluate_QA.py \
 | `--nativedir`          | Directory with native score CSV files |
 | `--native_score_field` | Column name of native score. Default is `tmscore_usalign` |
 | `--field`              | (Optional) Score column to evaluate. If omitted, all columns from column 2 onward are evaluated, assuming 'model' is column 1 |
+| `--outfile`            | (Optional) Output path for saving the evaluation results (CSV format). Default: `evaluation_results.csv` |
+
 
 ### Prediction files (CSV format):
-Each file should contain:
+Each prediction file should be a comma-separated table with this structure:
 ```
 model,EMA_score1,EMA_score2,...
 model1,0.85,0.79
 model2,0.67,0.71
 ```
 
+Example:
+```
+model,PSS,DProQA,VoroIF-GNN-score,VoroIF-GNN-pCAD-score,VoroMQA-dark,GCPNet-EMA,GATE-AFM
+deepmsa2_14_ranked_2.pdb,0.9545535989717224,0.02895,0.0,0.0,0.0,0.7771772742271423,0.5923953714036315
+afsample_v2_ranked_2.pdb,0.8873916966580978,0.0066,0.0,0.0,0.0,0.7705466747283936,0.575105558750621
+def_mul_tmsearch_ranked_0.pdb,0.9609340102827764,0.02353,0.0,0.0,0.0,0.7641939520835876,0.5981529354257233
+deepmsa2_1_ranked_4.pdb,0.96272264781491,0.02055,0.0,0.0,0.0,0.7685595154762268,0.5959772306691834
+deepmsa2_1_ranked_2.pdb,0.9606568380462726,0.02318,0.0,0.0,0.0,0.7671180963516235,0.5983494717414063
+afsample_v2_r21_not_ranked_1.pdb,0.9234104884318768,0.0192,0.0,0.0,0.0,0.7699458599090576,0.5879402631363266
+deepmsa2_0_ranked_3.pdb,0.9607991259640104,0.02123,0.0,0.0,0.0,0.7682469487190247,0.5953465198918304
+afsample_v1_r21_not_ranked_1.pdb,0.9156177377892032,0.02246,0.0,0.0,0.0,0.7822033762931824,0.5772502685580536
+folds_iter_esm_1_ranked_1.pdb,0.9471744215938304,0.01475,0.0,0.0,0.0,0.7621756196022034,0.5904867273330673
+deepmsa2_15_ranked_3.pdb,0.956274524421594,0.02606,0.0,0.0,0.0,0.7756944894790649,0.5937158219111754
+```
+
 ### Output:
 
-The script prints:
-- The evaluated fields (EMA score names)
-- Target names (e.g., H1106)
-- For each target:
-  - Pearson correlation
-  - Spearman correlation
-  - Top-1 loss: native score difference between the best model and the top-1 model ranked by the EMA scores
-  - RUAOC using top 25% native score threshold
+The script produces a CSV file where:
+- Each row corresponds to a single target (e.g., H1106, T1176).
+- Columns include the following metrics for each evaluated EMA method:
+  - *_pearson: Pearson correlation with native scores.
+  - *_spearman: Spearman correlation with native scores.
+  - *_loss: Difference between the best native score and the top-1 ranked model.
+  - *_auc: ROC AUC using the top 25% of native scores as the threshold.
     
 ## III. Scripts to generate labels for a new benchmark dataset
 Following are the prerequisites to generate the labels for new benchmark dataset:
