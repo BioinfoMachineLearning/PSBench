@@ -14,10 +14,10 @@ from sklearn.preprocessing import MinMaxScaler
 def process_target(target, group_id, args, native_df):
     """Processes a single target to compute correlation metrics."""
     
-    prediction = os.path.join(args.indir, target)
+    prediction = os.path.join(args.indir, target + '.csv')
     pred_df = pd.read_csv(prediction)
-    pred_df['model'] = pred_df['model'] + ".pdb"
-
+    pred_df['model'] = pred_df['model'].apply(lambda x: x if x.endswith('.pdb') else f"{x}.pdb")
+    # print(pred_df)
     common_models = set(pred_df['model'])
     common_native_df = native_df[native_df['model_name'].isin(common_models)]
     # print(common_native_df)
@@ -59,35 +59,31 @@ def main():
     parser.add_argument('--nativedir', type=str, required=True)
     parser.add_argument('--field', type=str, required=False)
     parser.add_argument('--native_score_field', type=str, default="tmscore_usalign", required=False)
+    parser.add_argument('--outfile', type=str, default="evaluation_results.csv", help="Path to output CSV file")
     args = parser.parse_args()
     
     scorefile = os.path.join(args.indir, os.listdir(args.indir)[0])
     group_ids = [args.field] if args.field else pd.read_csv(scorefile).columns[2:]
-    print(group_ids)
+    print(f"Scoring groups selected for evaluation: {', '.join(group_ids)}")
     
-    group_res = {}
-    for group_id in group_ids:
-        results = []
-        for target in sorted(os.listdir(args.nativedir)):
-            native_df = pd.read_csv(os.path.join(args.nativedir, target))
-            targetname = target.replace('.csv', '')
-            results.append(process_target(target, group_id, args, native_df))
-        
-        group_res[group_id] = {
-            'corrs': [r[0] for r in results],
-            'spear_corrs': [r[1] for r in results],
-            'losses': [r[2] for r in results],
-            'roc_aucs': [r[3] for r in results],
-        }
-    
-    print('    '.join(group_res.keys()))
-    targets = [target.rstrip('.csv') for target in sorted(os.listdir(args.nativedir))]
-    print('\t'.join(targets))
-    
-    for i in range(len(os.listdir(args.nativedir))):
-        print(' '.join(
-            [val[i] for group_id in group_res for val in [group_res[group_id]['corrs'], group_res[group_id]['spear_corrs'],
-                                                          group_res[group_id]['losses'], group_res[group_id]['roc_aucs']]]))
+    targets = [target.replace('_quality_scores.csv', '') for target in sorted(os.listdir(args.nativedir))]
+    all_rows = []
+
+    for i, target in enumerate(targets):
+        native_df = pd.read_csv(os.path.join(args.nativedir, target + '_quality_scores.csv'))
+        row = {"target": target}
+        for group_id in group_ids:
+            result = process_target(target, group_id, args, native_df)
+            row[f"{group_id}_pearson"] = result[0]
+            row[f"{group_id}_spearman"] = result[1]
+            row[f"{group_id}_loss"] = result[2]
+            row[f"{group_id}_auc"] = result[3]
+        all_rows.append(row)
+
+    # Create and save the DataFrame
+    result_df = pd.DataFrame(all_rows)
+    result_df.to_csv(args.outfile, index=False)
+    print(f"\nResults written to {args.outfile}")
 
 if __name__ == '__main__':
     main()
