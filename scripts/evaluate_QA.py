@@ -77,7 +77,7 @@ def main():
             row[f"{group_id}_pearson"] = result[0]
             row[f"{group_id}_spearman"] = result[1]
             row[f"{group_id}_loss"] = result[2]
-            row[f"{group_id}_auc"] = result[3]
+            row[f"{group_id}_auroc"] = result[3]
         all_rows.append(row)
 
     # Create and save the DataFrame
