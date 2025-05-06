@@ -2,7 +2,8 @@
 A large-scale benchmark for developing and evaluating methods for estimating protein complex structural model accuracy (EMA). It includes four components: (I) datasets for training and evaluating EMA methods; (II) scripts to evaluate the prediction results of EMA methods on the datasets; (III) scripts to label a new benchmark dataset; and (IV) baseline EMA methods which users can compare their EMA methods with. 
 ![PSBench Pipeline, Methods and Metrics](Datasets/imgs/pipeline_methods_metrics.png)
 
-PSBench datasets are publicly available at https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
+## Data Repository at Harvard Dataverse
+The datasets in PSBench can be downloaded from the Harvard Dataverse repository here: https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
 (need to change after publishing)
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
@@ -45,7 +46,7 @@ In addition, CASP15_inhouse_TOP5_dataset (a subset of CASP15_inhouse_dataset) an
    
 ## The dataset directory structure
 
-After the datasets are downloaded and unzipped, the structure of the four main datasets should be:
+After the datasets are downloaded from Harvard Dataverse and unzipped, the structure of the four main datasets should be:
 
 ```text
 📁 PSBench/
