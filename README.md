@@ -1,8 +1,9 @@
 # PSBench
-A large-scale benchmark for estimating the accuracy of protein complex structural models (EMA)
+A large-scale benchmark for developing and evaluating methods for estimating protein complex structural model accuracy (EMA). It includes four components: (I) datasets for training and evaluating EMA methods; (II) scripts to evaluate the prediction results of EMA methods on the datasets; (III) scripts to label a new benchmark dataset; and (IV) baseline EMA methods which users can compare their EMA methods with. 
 ![PSBench Pipeline, Methods and Metrics](Datasets/imgs/pipeline_methods_metrics.png)
 
-PSBench datasets are publicly available at https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
+### Data Repository at Harvard Dataverse
+The datasets in PSBench can be downloaded from the Harvard Dataverse repository here: https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
 (need to change after publishing)
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
@@ -35,17 +36,17 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
 
 ## I. Datasets for training and testing EMA methods
-PSBench consists of 4 complementary large datasets and two additional subsets of inhouse datasets which were used by GATE:
+PSBench consists of 4 complementary large datasets for training and testing EMA methods:
 1. CASP15_inhouse_dataset
 2. CASP15_community_dataset
 3. CASP16_inhouse_dataset
 4. CASP16_community_dataset
 
-In addition, CASP15_inhouse_TOP5_dataset (a subset of CASP15_inhouse_dataset) and CASP16_inhouse_TOP5_dataset (a subset of CASP16_inhouse_dataset) are also included into the PSBench. They were used to train and test GATE (a graph transformer EMA method).
+In addition, CASP15_inhouse_TOP5_dataset (a subset of CASP15_inhouse_dataset) and CASP16_inhouse_TOP5_dataset (a subset of CASP16_inhouse_dataset) are also included into the PSBench. The two subsets were used to train and test GATE (a graph transformer EMA method) respectively. Users may train and test their machine learning methods on the same subsets and compare the results with GATE. 
    
 ## The dataset directory structure
 
-After the datasets are downloaded and unzipped, the structure of the four main datasets should be:
+After the datasets are downloaded from Harvard Dataverse and unzipped, the structure of the four main datasets should be:
 
 ```text
 📁 PSBench/
@@ -72,7 +73,7 @@ After the datasets are downloaded and unzipped, the structure of the four main d
 
 ```
 
-Note: The TOP5 subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy and optimize storage. These models are identical to those already available in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/).
+Note: The two subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy and optimize storage. The models in the two subsets are identical to those already available in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/).
 
 ## Quality scores (labels)
 For each of the datasets, we provide 10 unique quality scores as labels:
@@ -89,7 +90,7 @@ For CASP15_inhouse_dataset and CASP16_inhouse_dataset, as well as their subsets 
 
 | Feature               | Description                                                       |
 |-----------------------|-------------------------------------------------------------------|
-| `model_type`          | Indicates model type (AlphaFold-multimer or AlphaFold3-based)     |
+| `model_type`          | Indicates model type (AlphaFold-multimer or AlphaFold3)     |
 | `afm_confidence_score`| AlphaFold-multimer confidence score                               |
 | `af3_ranking_score`   | AlphaFold3 ranking score                                          |
 | `iptm`                | Interface predicted Template Modeling score                       |
@@ -101,7 +102,7 @@ For detailed explanations of each quality score and feature, please refer to [Qu
 
 <details>
   
-For each figures below, **(a) Model count.** Number of models per target in the dataset. **(b) Score Distribution.** Box plots of each of six representative quality scores of the models for each target. **(c) Example.** Three representative models (worst, average, best) in terms of sum of the six representative quality scores for a target. Each model with two chains colored in blue and red is superimposed with the true structure in gray.
+In each figures below, there are three pieces of information: **(a) Model count.** Number of models per target in the dataset. **(b) Score Distribution.** Box plots of each of six representative quality scores of the models for each target. **(c) Example.** Three representative models (worst, average, best) in terms of sum of the six representative quality scores for a target. Each model with two chains colored in blue and red is superimposed with the true structure in gray.
 
 ## i. CASP15_inhouse_dataset
 CASP15_inhouse_dataset consists of a total of 7,885 models generated by MULTICOM3 during the 2022 CASP15 competition. Example target in Figure (c): H1143. 
@@ -124,16 +125,16 @@ CASP16_community_dataset consists of a total of 12,904 models generated by all t
 ![CASP16_community_dataset](Datasets/imgs/CASP16_community_dataset.png)
 </details>
 
-## II. Scripts to evaluate EMA methods on a benchmark dataset
+## II. Script to evaluate EMA methods on a benchmark dataset
 
-This script is used to compare how well different Estimated Model Accuracy (EMA) methods perform. It calculates how closely the predicted quality scores match the actual (native) quality scores using statistical metrics like Pearson correlation, Spearman correlation, top-1 ranking loss, and ROAUC.
+This script (evaluate_QA.py) is used to evaluate and compare how well different EMA methods perform. It calculates how closely the quality scores predicted by each EMA method for the structural models in a dataset match the true quality scores in terms of four metrics, including Pearson correlation, Spearman correlation, top-1 ranking loss, and AUROC.
 
 ### Command:
 
 ```bash
 python scripts/evaluate_QA.py \
   --indir ./Examples/Predictions \
-  --nativedir ./native_scores \
+  --nativedir ./true_scores \
   --native_score_field tmscore_usalign_aligned
 ```
 
@@ -142,23 +143,23 @@ python scripts/evaluate_QA.py \
 | Argument               | Description |
 |------------------------|-------------|
 | `--indir`              | Input directory with prediction files that includes predicted quality scores by one or more EMA methods for each model |
-| `--nativedir`          | Directory containing the native (true) quality scores for each target |
-| `--native_score_field` | Name of the column in the native score file that contains the true quality score. Default is `tmscore_usalign` |
+| `--nativedir`          | Directory containing the true quality scores for each target |
+| `--native_score_field` | Name of the column in the true score file that contains the true quality score. Default is `tmscore_usalign` |
 | `--field`              | (Optional) The name of the score column in the prediction file that you want to evaluate. If not provided, the script will evaluate all score columns (except for the model column) |
 | `--outfile`            | 	(Optional) The name of the CSV file where the evaluation results will be saved. Default is `evaluation_results.csv` |
 
 
 ### Format of prediction files
 
-Each prediction file should be a CSV file with the following structure:
-- The first row must include the column names (e.g., model, EMA1, EMA2).
-- The first column should be the model name (e.g., model1, model2).
-- The remaining columns should be prediction scores from EMA methods (e.g., EMA1, EMA2).
+Each prediction file should be a CSV file in the following format:
+- The first row is a header row, including the column names (e.g., model, EMA method 1, EMA method 2, ...).
+- The first column should be the names of structural models (e.g., model1, model2).
+- The remaining columns should be predicted quality scores for the models from one or more EMA methods (e.g., EMA method 1, EMA method 2).
 
 ```
 model,EMA1,EMA2,...
-model1,0.85,0.79
-model2,0.67,0.71
+model1,0.85,0.79, ...
+model2,0.67,0.71, ...
 ```
 
 Example:
@@ -185,10 +186,10 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 - *_auroc: AUROC from ROC analysis, showing how well the EMA method distinguishes high-quality models (top 25%) from others.
     
 ## III. Scripts to generate labels for a new benchmark dataset
-Following are the prerequisites to generate the labels for new benchmark dataset:
+Users can use the tools in PSBench to create their own benchmark dataset. Following are the prerequisites to generate the labels for a new benchmark dataset:
 ### Data:
-- Predicted structures
-- Native structures
+- Predicted protein complex structures (structural models)
+- Native (true) structures
 - Fasta files
 ### Tools (Downloaded or installed in the PSBench installation section)
  - OpenStructure
@@ -216,7 +217,7 @@ Check the docker installation with
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ``` -->
 
-#### Quality Scores Generation
+#### Quality Scores Generation for Predicted Structural Models
 
 #### Run the generate_quality_scores.sh pipeline
 
@@ -235,8 +236,8 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 For each target (e.g. `H1204`), ensure the following:
 
 - FASTA file: `/path/to/PSBench/Fasta/H1204.fasta`
-- Predicted models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
-- Native PDB: `/path/to/PSBench/native_models/H1204.pdb`
+- Predicted structural models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
+- Native (true) structure in the PDB format: `/path/to/PSBench/native_models/H1204.pdb`
 
 #### Example:
 
@@ -255,10 +256,10 @@ sh generate_quality_scores.sh \
 #### Output:
 Output folder will have subdirectories for each target (eg. /path/to/PSBench/output/ will have H1204/ H1213/). Each target subdirectory will have the following:
 
-- filtered_pdbs/ : directory where filtered predicted and native structures are saved
-- H1204_quality_scores.csv : CSV containing the quuality scores for each model of the target
+- filtered_pdbs/ : directory where aligned and filtered structural models and native structures are saved
+- H1204_quality_scores.csv : CSV containing the true quality scores for each model of the target
 - results/ : directory where outputs of OpenStructure and USalign runs are saved
-- temp/ : temporary directory for pdb filtration process
+- temp/ : temporary working directory for structure alignment and filtering process
 
 
 
@@ -272,7 +273,7 @@ Output folder will have subdirectories for each target (eg. /path/to/PSBench/out
 | Argument       | Description                                                                                      |
 |----------------|--------------------------------------------------------------------------------------------------|
 | `--fasta_dir`  | Directory containing FASTA files for each target (e.g., `/path/to/fasta`)                        |
-| `--pdb_dir`    | Directory containing predicted PDB model subfolders (e.g., `/path/to/pdbs`)                      |
+| `--pdb_dir`    | Directory containing predicted structural model subfolders (e.g., `/path/to/pdbs`)                      |
 | `--pkl_dir`    | Directory containing AlphaFold pickle (.pkl) subfolders (e.g., `/path/to/pkls`)                 |
 | `--outdir` | Directory where output CSV files will be saved (e.g., `/path/to/outdir`)                    |
 | `--targets`    | List of target names (e.g., `H1204 H1213`)                                                       |
@@ -301,7 +302,7 @@ Output folder will have target_af_features.csv for each target (eg. H1204_af_fea
 
 ## IV. Baseline EMA methods for comparison with a new EMA method
 
-Here are several established methods for Estimating Model Accuracy (EMA), with links to their source code:
+Here are several publicly available baseline EMA methods which users can comapre their methods with:
 
 - **GATE** [[Liu et al., 2025]](https://github.com/BioinfoMachineLearning/gate):  
   A multi-model EMA approach leveraging graph transformers on pairwise similarity graphs. Combines single-model and multi-model features for TM-score prediction.  
@@ -327,3 +328,4 @@ Here are several established methods for Estimating Model Accuracy (EMA), with l
 
 
 ## Reference
+Neupane, P., Liu, J., Cheng, J. (2025) PSBench: a large-scale benchmark for estimating the accuracy of protein complex structural models. Submitted. 
