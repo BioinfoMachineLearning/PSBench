@@ -90,7 +90,7 @@ For CASP15_inhouse_dataset and CASP16_inhouse_dataset, as well as their subsets 
 
 | Feature               | Description                                                       |
 |-----------------------|-------------------------------------------------------------------|
-| `model_type`          | Indicates model type (AlphaFold-multimer or AlphaFold3-based)     |
+| `model_type`          | Indicates model type (AlphaFold-multimer or AlphaFold3)     |
 | `afm_confidence_score`| AlphaFold-multimer confidence score                               |
 | `af3_ranking_score`   | AlphaFold3 ranking score                                          |
 | `iptm`                | Interface predicted Template Modeling score                       |
