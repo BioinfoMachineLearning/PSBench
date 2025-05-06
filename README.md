@@ -1,5 +1,5 @@
 # PSBench
-A large-scale benchmark for estimating the accuracy of protein complex structural models (EMA)
+A large-scale benchmark for estimating the accuracy (quality) of protein complex structural models (EMA)
 ![PSBench Pipeline, Methods and Metrics](Datasets/imgs/pipeline_methods_metrics.png)
 
 PSBench datasets are publicly available at https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
@@ -186,10 +186,10 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 - *_auroc: AUROC from ROC analysis, showing how well the EMA method distinguishes high-quality models (top 25%) from others.
     
 ## III. Scripts to generate labels for a new benchmark dataset
-Following are the prerequisites to generate the labels for new benchmark dataset:
+Users can use the tools in PSBench to create their own benchmark dataset. Following are the prerequisites to generate the labels for a new benchmark dataset:
 ### Data:
-- Predicted structures
-- Native structures
+- Predicted protein complex structures (structural models)
+- Native (true) structures
 - Fasta files
 ### Tools (Downloaded or installed in the PSBench installation section)
  - OpenStructure
@@ -217,7 +217,7 @@ Check the docker installation with
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ``` -->
 
-#### Quality Scores Generation
+#### Quality Scores Generation for Predicted Structural Models
 
 #### Run the generate_quality_scores.sh pipeline
 
@@ -236,8 +236,8 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 For each target (e.g. `H1204`), ensure the following:
 
 - FASTA file: `/path/to/PSBench/Fasta/H1204.fasta`
-- Predicted models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
-- Native PDB: `/path/to/PSBench/native_models/H1204.pdb`
+- Predicted structural models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
+- Native (true) structure in the PDB format: `/path/to/PSBench/native_models/H1204.pdb`
 
 #### Example:
 
@@ -256,10 +256,10 @@ sh generate_quality_scores.sh \
 #### Output:
 Output folder will have subdirectories for each target (eg. /path/to/PSBench/output/ will have H1204/ H1213/). Each target subdirectory will have the following:
 
-- filtered_pdbs/ : directory where filtered predicted and native structures are saved
-- H1204_quality_scores.csv : CSV containing the quuality scores for each model of the target
+- filtered_pdbs/ : directory where aligned and filtered structural models and native structures are saved
+- H1204_quality_scores.csv : CSV containing the true quality scores for each model of the target
 - results/ : directory where outputs of OpenStructure and USalign runs are saved
-- temp/ : temporary directory for pdb filtration process
+- temp/ : temporary working directory for structure alignment and filtering process
 
 
 
@@ -273,7 +273,7 @@ Output folder will have subdirectories for each target (eg. /path/to/PSBench/out
 | Argument       | Description                                                                                      |
 |----------------|--------------------------------------------------------------------------------------------------|
 | `--fasta_dir`  | Directory containing FASTA files for each target (e.g., `/path/to/fasta`)                        |
-| `--pdb_dir`    | Directory containing predicted PDB model subfolders (e.g., `/path/to/pdbs`)                      |
+| `--pdb_dir`    | Directory containing predicted structural model subfolders (e.g., `/path/to/pdbs`)                      |
 | `--pkl_dir`    | Directory containing AlphaFold pickle (.pkl) subfolders (e.g., `/path/to/pkls`)                 |
 | `--outdir` | Directory where output CSV files will be saved (e.g., `/path/to/outdir`)                    |
 | `--targets`    | List of target names (e.g., `H1204 H1213`)                                                       |
@@ -302,7 +302,7 @@ Output folder will have target_af_features.csv for each target (eg. H1204_af_fea
 
 ## IV. Baseline EMA methods for comparison with a new EMA method
 
-Here are several established methods for Estimating Model Accuracy (EMA), with links to their source code:
+Here are several publicly available baseline EMA methods which users can comapre their methods with:
 
 - **GATE** [[Liu et al., 2025]](https://github.com/BioinfoMachineLearning/gate):  
   A multi-model EMA approach leveraging graph transformers on pairwise similarity graphs. Combines single-model and multi-model features for TM-score prediction.  
