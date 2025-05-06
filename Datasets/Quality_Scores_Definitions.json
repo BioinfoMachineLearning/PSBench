@@ -42,7 +42,7 @@
       }
     },
     "Additional Input Features (In-House Datasets Only)": {
-      "type": {
+      "model_type": {
         "description": "Determines whether the model was generated using AlphaFold2 or AlphaFold3. Available only for in-house datasets."
       },
       "afm_confidence_score": {
@@ -57,7 +57,7 @@
       "num_inter_pae": {
         "description": "Number of inter-chain predicted aligned errors less than 5 Å."
       },
-      "mpDockQ_pDockQ": {
+      "mpDockQ/pDockQ": {
         "description": "Multiple-interface predicted DockQ for multimers (mpDockQ) or predicted DockQ for dimers (pDockQ)."
       }
     }
