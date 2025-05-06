@@ -329,3 +329,4 @@ Here are several publicly available baseline EMA methods which users can comapre
 
 
 ## Reference
+Neupane, P., Liu, J., Cheng, J. (2025) PSBench: a large-scale benchmark for estimating the accuracy of protein complex structural models. Submitted. 
