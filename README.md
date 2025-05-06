@@ -68,7 +68,6 @@ After the datasets are downloaded and unzipped, the structure of the four main d
 ├── 📁 CASP16_inhouse_dataset/
 ├── 📁 CASP16_inhouse_TOP5_dataset/
 ├── 📁 CASP16_community_dataset/
-├── 📄 extract.sh
 └── 📄 README.md
 
 ```
