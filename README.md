@@ -88,12 +88,15 @@ For each of the datasets, we provide 10 unique quality scores as labels:
 
 For CASP15_inhouse_dataset and CASP16_inhouse_dataset, as well as their subsets (i.e., CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset), the following additional features are provided for each models:
 
-- model_type : indicates model type (AlphaFold-multimer or AlphaFold3-based model)
-- afm_confidence_score : AlphaFold-multimer confidence score
-- af3_ranking_score : AlphaFold3 ranking score
-- iptm : interface predicted Template Modeling score
-- num_inter_pae : number of inter-chain predicted aligned errors (<5 Å)
-- mpDockQ/pDockQ : predicted multimer DockQ score
+| Feature               | Description                                                       |
+|-----------------------|-------------------------------------------------------------------|
+| `model_type`          | Indicates model type (AlphaFold-multimer or AlphaFold3-based)     |
+| `afm_confidence_score`| AlphaFold-multimer confidence score                               |
+| `af3_ranking_score`   | AlphaFold3 ranking score                                          |
+| `iptm`                | Interface predicted Template Modeling score                       |
+| `num_inter_pae`       | Number of inter-chain predicted aligned errors (<5 Å)             |
+| `mpDockQ/pDockQ`      | Predicted multimer DockQ score                                    |
+
 
 For detailed explanations of each quality score and feature, please refer to [Quality_Scores_Definitions](Datasets/Quality_Scores_Definitions.json)
 
