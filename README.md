@@ -35,13 +35,13 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
 
 ## I. Datasets for training and testing EMA methods
-PSBench consists of 4 complementary large datasets and two additional subsets of inhouse datasets which were used by GATE:
+PSBench consists of 4 complementary large datasets for training and testing EMA methods:
 1. CASP15_inhouse_dataset
 2. CASP15_community_dataset
 3. CASP16_inhouse_dataset
 4. CASP16_community_dataset
 
-In addition, CASP15_inhouse_TOP5_dataset (a subset of CASP15_inhouse_dataset) and CASP16_inhouse_TOP5_dataset (a subset of CASP16_inhouse_dataset) are also included into the PSBench. They were used to train and test GATE (a graph transformer EMA method).
+In addition, CASP15_inhouse_TOP5_dataset (a subset of CASP15_inhouse_dataset) and CASP16_inhouse_TOP5_dataset (a subset of CASP16_inhouse_dataset) are also included into the PSBench. The two subsets were used to train and test GATE (a graph transformer EMA method) respectively. Users may train and test their machine learning methods on the same subsets and compare the results with GATE. 
    
 ## The dataset directory structure
 
