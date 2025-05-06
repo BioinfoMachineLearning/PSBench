@@ -73,7 +73,7 @@ After the datasets are downloaded and unzipped, the structure of the four main d
 
 ```
 
-Note: The TOP5 subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy and optimize storage. These models are identical to those already available in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/).
+Note: The two subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy and optimize storage. The models in the two subsets are identical to those already available in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/).
 
 ## Quality scores (labels)
 For each of the datasets, we provide 10 unique quality scores as labels:
