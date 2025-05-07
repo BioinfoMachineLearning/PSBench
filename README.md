@@ -182,8 +182,8 @@ deepmsa2_15_ranked_3.pdb,0.956274524421594,0.02606,0.0,0.0,0.0,0.775694489479064
 The script generates a CSV file summarizing the evaluation results. Each row corresponds to a different target (e.g., a protein complex), and for each EMA method, the following metrics are reported:
 - *_pearson: How strongly the predicted scores correlate with the true scores (Pearson correlation).
 - *_spearman: A rank-based version of correlation (Spearman correlation).
-- *_loss: The difference between the best possible model and the top-ranked model according to the EMA scores.
-- *_auroc: AUROC from ROC analysis, showing how well the EMA method distinguishes high-quality models (top 25%) from others.
+- *_loss: The difference between the quality score of the truely best model of a target and that of the top-ranked model selected by the predicted quality scores.
+- *_auroc: AUROC from ROC analysis, measuring how well the EMA method distinguishes high-quality models (top 25%) from others.
     
 ## III. Scripts to generate labels for a new benchmark dataset
 Users can use the tools in PSBench to create their own benchmark dataset. Following are the prerequisites to generate the labels for a new benchmark dataset:
