@@ -3,11 +3,11 @@ A large-scale benchmark for developing and evaluating methods for estimating pro
 ![PSBench Pipeline, Methods and Metrics](imgs/pipeline_methods_metrics.png)
 
 ### Data Repository at Harvard Dataverse
-The datasets in PSBench can be downloaded from the Harvard Dataverse repository here: https://dataverse.harvard.edu/previewurl.xhtml?token=bd3a9914-24c6-4acb-a6c1-6886dc52aa4b
-(need to change after publishing)
+The datasets in PSBench can be downloaded from the Harvard Dataverse repository here: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/75SZ1U
+
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
-(might change after publishing)
+
 ## PSBench Installation
 
 ### Clone the repository
