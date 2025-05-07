@@ -326,6 +326,7 @@ Here are several publicly available baseline EMA methods which users can comapre
   🔗 GitHub: [MULTICOM_qa](https://github.com/BioinfoMachineLearning/MULTICOM_qa)  
   🔗 Simplified: [mmalign_pairwise.py](https://github.com/BioinfoMachineLearning/gate/blob/main/gate/feature/mmalign_pairwise.py)
 
+It is worth noting that CASP15_inhouse_dataset and CASP16_inhouse_dataset contain AlphaFold-Multimer self-estimated confidence scores for the structural models in the two datasets. They can also serve as a baseline to be compared with new EMA methods. 
 
 ## Reference
 Neupane, P., Liu, J., Cheng, J. (2025) PSBench: a large-scale benchmark for estimating the accuracy of protein complex structural models. Submitted. 
