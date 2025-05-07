@@ -190,7 +190,7 @@ Users can use the tools in PSBench to create their own benchmark dataset. Follow
 ### Data:
 - Predicted protein complex structures (structural models)
 - Native (true) structures
-- Fasta files
+- Protein sequence files in FASTA format
 ### Tools (Downloaded or installed in the PSBench installation section)
  - OpenStructure
  - USalign
