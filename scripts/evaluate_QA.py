@@ -1,3 +1,8 @@
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Following code curated for PoseBench: (https://github.com/BioinfoMachineLearning/PSBench)
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+
 from calendar import c
 from curses import raw
 import os, sys, argparse, time

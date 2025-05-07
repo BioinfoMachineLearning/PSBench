@@ -1,3 +1,8 @@
+# -------------------------------------------------------------------------------------------------------------------------------------
+# Following code curated for PoseBench: (https://github.com/BioinfoMachineLearning/PSBench)
+# -------------------------------------------------------------------------------------------------------------------------------------
+
+
 import os, sys, argparse
 from multiprocessing import Pool
 from util import is_file, is_dir, makedir_if_not_exists
