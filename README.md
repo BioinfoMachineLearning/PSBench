@@ -133,9 +133,9 @@ This script (evaluate_QA.py) is used to evaluate and compare how well different 
 
 ```bash
 python scripts/evaluate_QA.py \
-  --indir ./Examples/Predictions \
-  --nativedir ./true_scores \
-  --native_score_field tmscore_usalign_aligned
+  --indir $INPUT_DIR \ 
+  --nativedir $NATIVE_DIR \ 
+  --native_score_field $NATIVE_SCORE_FIELD
 ```
 
 ### Arguments:
@@ -148,6 +148,13 @@ python scripts/evaluate_QA.py \
 | `--field`              | (Optional) The name of the score column in the prediction file that you want to evaluate. If not provided, the script will evaluate all score columns (except for the model column) |
 | `--outfile`            | 	(Optional) The name of the CSV file where the evaluation results will be saved. Default is `evaluation_results.csv` |
 
+#### Example: 
+```bash
+python scripts/evaluate_QA.py \
+  --indir ./Examples/Predictions \
+  --nativedir ./true_scores \
+  --native_score_field tmscore_usalign_aligned
+```
 
 ### Format of prediction files
 
