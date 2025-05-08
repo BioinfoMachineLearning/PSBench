@@ -149,6 +149,7 @@ python scripts/evaluate_QA.py \
 | `--outfile`            | 	(Optional) The name of the CSV file where the evaluation results will be saved. Default is `evaluation_results.csv` |
 
 #### Example: 
+Run the command below in the installation directory of PSBench:
 ```bash
 python scripts/evaluate_QA.py \
   --indir ./Examples/Predictions \
