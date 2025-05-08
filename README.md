@@ -36,7 +36,7 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
 
 ## I. Datasets for training and testing EMA methods
-PSBench consists of 4 complementary large datasets for training and testing EMA methods:
+PSBench consists of the following 4 complementary large datasets for training and testing EMA methods, which can be downloaded from the Harvard Dataverse repository above: 
 1. CASP15_inhouse_dataset
 2. CASP15_community_dataset
 3. CASP16_inhouse_dataset
