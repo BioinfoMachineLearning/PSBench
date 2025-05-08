@@ -142,9 +142,9 @@ python scripts/evaluate_QA.py \
 
 | Argument               | Description |
 |------------------------|-------------|
-| `--indir`              | Input directory with prediction files that includes predicted quality scores by one or more EMA methods for each model |
-| `--nativedir`          | Directory containing the true quality scores for each target |
-| `--native_score_field` | Name of the column in the true score file that contains the true quality score. Default is `tmscore_usalign` |
+| `--indir`              | Input directory with model quality prediction files that includes predicted quality scores by one or more EMA methods for each model |
+| `--nativedir`          | Directory containing the true model quality scores for each target. The true model quality scores are available in each of the datasets downloaded from the Harvard Dataverse repository. |
+| `--native_score_field` | Name of the column in the true score file that contains the true quality score to be evaluated against. Default is `tmscore_usalign` |
 | `--field`              | (Optional) The name of the score column in the prediction file that you want to evaluate. If not provided, the script will evaluate all score columns (except for the model column) |
 | `--outfile`            | 	(Optional) The name of the CSV file where the evaluation results will be saved. Default is `evaluation_results.csv` |
 
