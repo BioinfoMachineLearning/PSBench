@@ -244,12 +244,12 @@ sh generate_quality_scores.sh \
 
 | Argument         | Description                                                                                      |
 |------------------|--------------------------------------------------------------------------------------------------|
-| `--fasta_dir`     | Path to the directory containing FASTA files (named as `<target>.fasta`)                        |
+| `--fasta_dir`     | Path to the directory containing protein sequence files in FASTA format (named as `<target>.fasta`)                        |
 | `--predicted_dir` | Path to the base directory containing predicted models (subdirectory per target)                |
-| `--native_dir`    | Path to the directory containing native PDB files (named as `<target>.pdb`)                     |
+| `--native_dir`    | Path to the directory containing native protein structure files in PDB format (named as `<target>.pdb`)                     |
 | `--outdir`        | Path to the base output directory for results                                                   |
-| `--usalign`       | Path to the USalign binary (e.g., `tools/USalign`)                                              |
-| `--clustalw`      | Path to the ClustalW binary (e.g., `tools/clustalw1.83/clustalw`)                               |
+| `--usalign`       | Path to the USalign program (e.g., `tools/USalign`)                                              |
+| `--clustalw`      | Path to the ClustalW program (e.g., `tools/clustalw1.83/clustalw`)                               |
 | `--targets`       | Space-separated list of target names to process (e.g., `H1204 H1213`)                           |
 
 For each target (e.g. `H1204`), ensure the following:
