@@ -156,7 +156,7 @@ python scripts/evaluate_QA.py \
   --native_score_field tmscore_usalign_aligned
 ```
 
-### Format of prediction files
+### Format of model quality prediction files
 
 Each prediction file should be a CSV file in the following format:
 - The first row is a header row, including the column names (e.g., model, EMA method 1, EMA method 2, ...).
@@ -169,7 +169,7 @@ model1,0.85,0.79, ...
 model2,0.67,0.71, ...
 ```
 
-Example (Examples/Predictions/H1202.csv):
+Example of a model quality prediction file (Examples/Predictions/H1202.csv):
 ```
 model,PSS,DProQA,VoroIF-GNN-score,VoroIF-GNN-pCAD-score,VoroMQA-dark,GCPNet-EMA,GATE-AFM
 deepmsa2_14_ranked_2.pdb,0.9545535989717224,0.02895,0.0,0.0,0.0,0.7771772742271423,0.5923953714036315
