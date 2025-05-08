@@ -145,7 +145,7 @@ python scripts/evaluate_QA.py \
 | `--indir`              | Input directory with model quality prediction files that includes predicted quality scores by one or more EMA methods for each model |
 | `--nativedir`          | Directory containing the true model quality scores for each target. The true model quality scores are available in each of the datasets downloaded from the Harvard Dataverse repository. |
 | `--native_score_field` | Name of the column in the true score file that contains the true quality score to be evaluated against. Default is `tmscore_usalign` |
-| `--field`              | (Optional) The name of the score column in the prediction file that you want to evaluate. If not provided, the script will evaluate all score columns (except for the model column) |
+| `--field`              | (Optional) The name of the EMA method column in the prediction file that you want to evaluate. If not provided, the script will evaluate the model quality prediction scores of all the EMA methods |
 | `--outfile`            | 	(Optional) The name of the CSV file where the evaluation results will be saved. Default is `evaluation_results.csv` |
 
 #### Example: 
@@ -160,7 +160,7 @@ python scripts/evaluate_QA.py \
 
 Each prediction file should be a CSV file in the following format:
 - The first row is a header row, including the column names (e.g., model, EMA method 1, EMA method 2, ...).
-- The first column should be the names of structural models (e.g., model1, model2).
+- The first column starting from the second row should be the names of structural models (e.g., model1, model2).
 - The remaining columns should be predicted quality scores for the models from one or more EMA methods (e.g., EMA method 1, EMA method 2).
 
 ```
