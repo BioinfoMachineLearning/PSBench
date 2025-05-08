@@ -254,7 +254,7 @@ sh generate_quality_scores.sh \
 
 For each target (e.g. `H1204`), ensure the following:
 
-- FASTA file: `/path/to/PSBench/Fasta/H1204.fasta`
+- Sequence file in FASTA format: `/path/to/PSBench/Fasta/H1204.fasta`
 - Predicted structural models: `/path/to/PSBench/predicted_models/H1204/*.pdb`
 - Native (true) structure in the PDB format: `/path/to/PSBench/native_models/H1204.pdb`
 
