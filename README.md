@@ -169,7 +169,7 @@ model1,0.85,0.79, ...
 model2,0.67,0.71, ...
 ```
 
-Example:
+Example (Predictions/H1202.csv):
 ```
 model,PSS,DProQA,VoroIF-GNN-score,VoroIF-GNN-pCAD-score,VoroMQA-dark,GCPNet-EMA,GATE-AFM
 deepmsa2_14_ranked_2.pdb,0.9545535989717224,0.02895,0.0,0.0,0.0,0.7771772742271423,0.5923953714036315
