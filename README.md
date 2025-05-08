@@ -228,6 +228,17 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 
 #### Run the generate_quality_scores.sh pipeline
 
+```bash
+sh generate_quality_scores.sh \
+  --fasta_dir $FASTA_DIR \
+  --predicted_dir $PREDICTED_DIR \
+  --native_dir $NATIVE_DIR \
+  --outdir $OUTDIR \
+  --usalign $USALIGN \
+  --clustalw $CLUSTALW \
+  --targets $TARGETS
+```
+
 #### Required Arguments:
 
 | Argument         | Description                                                                                      |
