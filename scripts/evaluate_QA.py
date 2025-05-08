@@ -38,10 +38,10 @@ import pandas as pd
 from sklearn.metrics import mean_squared_error, roc_auc_score
 from sklearn.preprocessing import MinMaxScaler
 
-def process_target(target, group_id, args, native_df):
+def process_target(target, ema_method, args, native_df):
     """Processes a single target to compute correlation metrics."""
     
-    prediction = os.path.join(args.indir, target + '.csv')
+    prediction = os.path.join(args.input_dir, target + '.csv')
     pred_df = pd.read_csv(prediction)
     pred_df['model'] = pred_df['model'].apply(lambda x: x if x.endswith('.pdb') else f"{x}.pdb")
     # print(pred_df)
@@ -49,19 +49,19 @@ def process_target(target, group_id, args, native_df):
     common_native_df = native_df[native_df['model_name'].isin(common_models)]
     # print(common_native_df)
 
-    scores_dict = {row['model_name']: float(row[args.native_score_field]) for _, row in common_native_df.iterrows()}
-    true_tmscores = common_native_df[args.native_score_field].values
+    scores_dict = {row['model_name']: float(row[args.true_score_field]) for _, row in common_native_df.iterrows()}
+    true_tmscores = common_native_df[args.true_score_field].values
     
     if pred_df.empty:
         return ["0", "0", str(np.max(true_tmscores)), "0.5"]
     
-    pred_df = pred_df.sort_values(by=[group_id], ascending=False).reset_index(drop=True)
+    pred_df = pred_df.sort_values(by=[ema_method], ascending=False).reset_index(drop=True)
     scores_filt, scores_true = [], []
     
     for i, row in pred_df.iterrows():
         model = row['model']
         if model in scores_dict:
-            scores_filt.append(float(row[group_id]))
+            scores_filt.append(float(row[ema_method]))
             scores_true.append(scores_dict[model])
     
     if not scores_filt:
@@ -82,29 +82,29 @@ def process_target(target, group_id, args, native_df):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--indir', type=str, required=True)
-    parser.add_argument('--nativedir', type=str, required=True)
-    parser.add_argument('--field', type=str, required=False)
-    parser.add_argument('--native_score_field', type=str, default="tmscore_usalign", required=False)
+    parser.add_argument('--input_dir', type=str, required=True)
+    parser.add_argument('--native_dir', type=str, required=True)
+    parser.add_argument('--ema_method', type=str, required=False)
+    parser.add_argument('--true_score_field', type=str, default="tmscore_usalign", required=False)
     parser.add_argument('--outfile', type=str, default="evaluation_results.csv", help="Path to output CSV file")
     args = parser.parse_args()
     
-    scorefile = os.path.join(args.indir, os.listdir(args.indir)[0])
-    group_ids = [args.field] if args.field else pd.read_csv(scorefile).columns[2:]
-    print(f"Scoring groups selected for evaluation: {', '.join(group_ids)}")
+    scorefile = os.path.join(args.input_dir, os.listdir(args.input_dir)[0])
+    ema_methods = [args.ema_method] if args.ema_method else [column for column in pd.read_csv(scorefile).columns if column != 'model']
+    print(f"EMA methods for evaluation: {', '.join(ema_methods)}")
     
-    targets = [target.replace('_quality_scores.csv', '') for target in sorted(os.listdir(args.nativedir))]
+    targets = [target.replace('_quality_scores.csv', '') for target in sorted(os.listdir(args.native_dir))]
     all_rows = []
 
     for i, target in enumerate(targets):
-        native_df = pd.read_csv(os.path.join(args.nativedir, target + '_quality_scores.csv'))
+        native_df = pd.read_csv(os.path.join(args.native_dir, target + '_quality_scores.csv'))
         row = {"target": target}
-        for group_id in group_ids:
-            result = process_target(target, group_id, args, native_df)
-            row[f"{group_id}_pearson"] = result[0]
-            row[f"{group_id}_spearman"] = result[1]
-            row[f"{group_id}_loss"] = result[2]
-            row[f"{group_id}_auroc"] = result[3]
+        for ema_method in ema_methods:
+            result = process_target(target, ema_method, args, native_df)
+            row[f"{ema_method}_pearson"] = result[0]
+            row[f"{ema_method}_spearman"] = result[1]
+            row[f"{ema_method}_loss"] = result[2]
+            row[f"{ema_method}_auroc"] = result[3]
         all_rows.append(row)
 
     # Create and save the DataFrame
