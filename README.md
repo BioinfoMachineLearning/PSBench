@@ -197,18 +197,18 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 - *_auroc: AUROC from ROC analysis, measuring how well the EMA method distinguishes high-quality models (top 25%) from others.
 
 
-## III. Reproducing EMA evaluation results in PSBench
+## III. Reproducing the evaluation results of GATE and other EMA methods in PSBench
 
 ### Blind Prediction Results of Estimating the Accuracy of CASP16 In-house Models
 
 Note: Replace $DATADIR with the path where the CASP16_inhouse_TOP5_dataset is downloaded.
 
-#### Evaluation using TM-score
+#### Evaluation in terms of TM-score
 ```
 python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_inhouse_TOP5_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field tmscore_usalign_aligned
 ```
 
-#### Evaluation using DockQ
+#### Evaluation in terms of DockQ score
 ```
 python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_inhouse_TOP5_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field dockq_wave
 ```
@@ -221,7 +221,7 @@ Note: Replace $DATADIR with the path where the CASP16_community_dataset is downl
 python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_community_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field tmscore_mmalign
 ```
 
-## IIII. Scripts to generate labels for a new benchmark dataset
+## IV. Scripts to generate labels for a new benchmark dataset
 Users can use the tools in PSBench to create their own benchmark dataset. Following are the prerequisites to generate the labels for a new benchmark dataset:
 ### Data:
 - Predicted protein complex structures (structural models)
@@ -347,7 +347,7 @@ Output folder will have target_af_features.csv for each target (eg. H1204_af_fea
 
 </details>
 
-## IV. Baseline EMA methods for comparison with a new EMA method
+## V. Baseline EMA methods for comparison with a new EMA method
 
 Here are several publicly available baseline EMA methods which users can comapre their methods with:
 
