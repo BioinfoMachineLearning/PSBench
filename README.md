@@ -197,7 +197,7 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 - *_auroc: AUROC from ROC analysis, measuring how well the EMA method distinguishes high-quality models (top 25%) from others.
 
 
-## III. Reproducing the evaluation results of GATE and other EMA methods in PSBench
+## III. Reproducing the evaluation results of GATE and other baseline EMA methods in PSBench
 
 ### Blind Prediction Results of Estimating the Accuracy of CASP16 In-house Models
 
