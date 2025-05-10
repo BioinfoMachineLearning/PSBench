@@ -152,9 +152,9 @@ python scripts/evaluate_QA.py \
 Run the command below in the installation directory of PSBench:
 ```bash
 python scripts/evaluate_QA.py \
-  --indir ./Examples/Predictions \
-  --nativedir ./true_scores \
-  --native_score_field tmscore_usalign_aligned
+  --input_dir ./Predictions/CASP16_inhouse_TOP5_dataset/ \
+  --native_dir ./true_scores \
+  --true_score_field tmscore_usalign_aligned
 ```
 
 ### Format of model quality prediction files
@@ -170,7 +170,7 @@ model1,0.85,0.79, ...
 model2,0.67,0.71, ...
 ```
 
-Example of a model quality prediction file (Examples/Predictions/H1202.csv):
+Example of a model quality prediction file (./Predictions/CASP16_inhouse_TOP5_dataset/H1202.csv):
 ```
 model,PSS,DProQA,VoroIF-GNN-score,VoroIF-GNN-pCAD-score,VoroMQA-dark,GCPNet-EMA,GATE-AFM
 deepmsa2_14_ranked_2.pdb,0.9545535989717224,0.02895,0.0,0.0,0.0,0.7771772742271423,0.5923953714036315
@@ -192,8 +192,33 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 - *_spearman: A rank-based version of correlation (Spearman correlation).
 - *_loss: The difference between the quality score of the truely best model of a target and that of the top-ranked model selected by the predicted quality scores.
 - *_auroc: AUROC from ROC analysis, measuring how well the EMA method distinguishes high-quality models (top 25%) from others.
-    
-## III. Scripts to generate labels for a new benchmark dataset
+
+
+## III. Reproducing EMA evaluation results in PSBench
+
+### Blind Prediction Results of Estimating the Accuracy of CASP16 In-house Models
+
+Note: Replace $DATADIR with the path where the CASP16_inhouse_TOP5_dataset is downloaded.
+
+#### Evaluation using TM-score
+```
+python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_inhouse_TOP5_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field tmscore_usalign_aligned
+```
+
+#### Evaluation using DockQ
+```
+python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_inhouse_TOP5_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field dockq_wave
+```
+
+### Blind Prediction Results in CASP16 EMA Competition
+
+Note: Replace $DATADIR with the path where the CASP16_community_dataset is downloaded.
+
+```
+python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_community_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field tmscore_mmalign
+```
+
+## IIII. Scripts to generate labels for a new benchmark dataset
 Users can use the tools in PSBench to create their own benchmark dataset. Following are the prerequisites to generate the labels for a new benchmark dataset:
 ### Data:
 - Predicted protein complex structures (structural models)
