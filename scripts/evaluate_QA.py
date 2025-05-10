@@ -55,6 +55,9 @@ def process_target(target, ema_method, args, native_df):
     if pred_df.empty:
         return ["0", "0", str(np.max(true_tmscores)), "0.5"]
     
+    if ema_method not in pred_df.columns:
+        return ["0", "0", str(np.max(true_tmscores)),  "0.5"]
+        
     pred_df = pred_df.sort_values(by=[ema_method], ascending=False).reset_index(drop=True)
     scores_filt, scores_true = [], []
     
@@ -67,6 +70,9 @@ def process_target(target, ema_method, args, native_df):
     if not scores_filt:
         return ["0", "0", str(np.max(true_tmscores)),  "0.5"]
     
+    if np.any(np.isnan(scores_filt)) or np.any(np.isnan(scores_true)):
+        return ["0", "0", str(np.max(true_tmscores)),  "0.5"]
+
     corr = pearsonr(scores_filt, scores_true)[0]
     spear_corr = spearmanr(scores_filt, scores_true).statistic
 
@@ -93,7 +99,7 @@ def main():
     ema_methods = [args.ema_method] if args.ema_method else [column for column in pd.read_csv(scorefile).columns if column != 'model']
     print(f"EMA methods for evaluation: {', '.join(ema_methods)}")
     
-    targets = [target.replace('_quality_scores.csv', '') for target in sorted(os.listdir(args.native_dir))]
+    targets = [target.replace('.csv', '') for target in sorted(os.listdir(args.input_dir))]
     all_rows = []
 
     for i, target in enumerate(targets):
