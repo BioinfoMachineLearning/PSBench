@@ -79,7 +79,7 @@ Note: The two subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_datas
 
 
 ## Quality scores (labels)
-For each of the datasets, we provide the following 10 unique quality scores as labels:
+For each structural model in the datasets, we provide the following 10 unique quality scores as labels:
 
 | Category | Quality scores |
 |:---------|:-------------------|
