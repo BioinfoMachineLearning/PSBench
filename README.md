@@ -74,7 +74,7 @@ After the datasets are downloaded from Harvard Dataverse and unzipped, the struc
 ```
 In the folder of each dataset, a summary file provides an overview of the dataset, the "Fasta" sub-folder contains the sequences of the protein complex targets in the FASTA format; the "Predicted_Models" sub-folder contains the predicted structural models in the PDB format; the "Quality_Scores" sub-folder contains the labels (quality scores) of the structural models. CASP15_inhouse_dataset and CASP16_inhouse_dataset have an additional sub-folder "AlphaFold_Features" containing AlphaFold-based features for the structural models. 
 
-Note: The two subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy. The structural models in the two subsets are available in the "Predicted_Models" sub-folder in their respective full datasets (CASP15_inhouse_dataset/Predicted_Models/ and CASP16_inhouse_dataset/Predicted_Models/). Users can put the downloaded datasets anywhere or in the installation directory of PSBench (recommended for easy management). 
+Note: The two subsets (CASP15_inhouse_TOP5_dataset and CASP16_inhouse_TOP5_dataset) do not include the Predicted_Models directories to minimize redundancy. The structural models in the two subsets are available in the "Predicted_Models" sub-folder in their respective full datasets (CASP15_inhouse_dataset and CASP16_inhouse_dataset). Users can put the downloaded datasets anywhere or in the installation directory of PSBench (recommended for easy management). 
 
 
 
