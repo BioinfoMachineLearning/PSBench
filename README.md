@@ -93,8 +93,8 @@ For CASP15_inhouse_dataset and CASP16_inhouse_dataset, as well as their subsets 
 
 | Feature               | Description                                                       |
 |-----------------------|-------------------------------------------------------------------|
-| `model_type`          | Indicates model type (AlphaFold-multimer or AlphaFold3)     |
-| `afm_confidence_score`| AlphaFold-multimer confidence score                               |
+| `model_type`          | Indicates model type (AlphaFold2-multimer or AlphaFold3)     |
+| `afm_confidence_score`| AlphaFold2-multimer confidence score                               |
 | `af3_ranking_score`   | AlphaFold3 ranking score                                          |
 | `iptm`                | Interface predicted Template Modeling score                       |
 | `num_inter_pae`       | Number of inter-chain predicted aligned errors (<5 Å)             |
@@ -354,7 +354,7 @@ Here are several publicly available baseline EMA methods which users can comapre
 - **GATE** [[Liu et al., 2025]](https://github.com/BioinfoMachineLearning/gate):  
   A multi-model EMA approach leveraging graph transformers on pairwise similarity graphs. Combines single-model and multi-model features for TM-score prediction.  
   🔗 GitHub: [https://github.com/BioinfoMachineLearning/gate](https://github.com/BioinfoMachineLearning/gate)  
-  - **GATE-AFM**: An enhanced version of GATE that incorporates AlphaFold-Multimer features as node features.
+  - **GATE-AFM**: An enhanced version of GATE that incorporates AlphaFold2-Multimer features as node features.
 
 - **DProQA** [[Chen et al., 2023]](https://github.com/jianlin-cheng/DProQA):  
   A single-model EMA method using a Gated Graph Transformer. Targets interface quality prediction (e.g., DockQ scores) using KNN-based structural graphs.  
@@ -373,7 +373,7 @@ Here are several publicly available baseline EMA methods which users can comapre
   🔗 GitHub: [MULTICOM_qa](https://github.com/BioinfoMachineLearning/MULTICOM_qa)  
   🔗 Simplified: [mmalign_pairwise.py](https://github.com/BioinfoMachineLearning/gate/blob/main/gate/feature/mmalign_pairwise.py)
 
-It is worth noting that CASP15_inhouse_dataset and CASP16_inhouse_dataset contain AlphaFold-Multimer self-estimated confidence scores for the structural models in the two datasets. They can also serve as a baseline to be compared with new EMA methods. 
+It is worth noting that CASP15_inhouse_dataset and CASP16_inhouse_dataset contain AlphaFold2-Multimer self-estimated confidence scores for the structural models in the two datasets. They can also serve as a baseline to be compared with new EMA methods. 
 
 ## Acknowledgement
 PSBench builds upon the source code and data from the following projects::
