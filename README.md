@@ -223,11 +223,11 @@ python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_community_dataset
 
 ## IV. Scripts to generate labels for a new benchmark dataset
 Users can use the tools in PSBench to create their own benchmark dataset. Following are the prerequisites to generate the labels for a new benchmark dataset:
-### Data:
+### Required Input Data
 - Predicted protein complex structures (structural models)
 - Native (true) structures
 - Protein sequence files in FASTA format
-### Tools (Downloaded or installed in the PSBench installation section)
+### Tools (downloaded or installed in the PSBench installation section)
  - OpenStructure
  - USalign
  - Clustalw
@@ -255,7 +255,7 @@ docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 
 ### Generate True Quality Scores (Labels) for Predicted Structural Models
 
-#### Run the generate_quality_scores.sh pipeline
+#### Run the generate_quality_scores.sh pipeline using the command below
 
 ```bash
 sh generate_quality_scores.sh \
