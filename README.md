@@ -201,7 +201,7 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 
 ### Blind Prediction Results of Estimating the Accuracy of CASP16 In-house Models
 
-Note: Replace $DATADIR with the path where the CASP16_inhouse_TOP5_dataset is downloaded.
+Note: Replace $DATADIR with the path where the CASP16_inhouse_TOP5_dataset is stored.
 
 #### Evaluation in terms of TM-score
 ```
@@ -215,7 +215,7 @@ python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_inhouse_TOP5_data
 
 ### Blind Prediction Results in CASP16 EMA Competition
 
-Note: Replace $DATADIR with the path where the CASP16_community_dataset is downloaded.
+Note: Replace $DATADIR with the path where the CASP16_community_dataset is stored.
 
 ```
 python scripts/evaluate_QA.py --input_dir ./Predictions/CASP16_community_dataset/ --native_dir $DATADIR/Quality_Scores/ --true_score_field tmscore_mmalign
@@ -253,7 +253,7 @@ Check the docker installation with
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ``` -->
 
-#### Quality Scores Generation for Predicted Structural Models
+### Generate True Quality Scores (Labels) for Predicted Structural Models
 
 #### Run the generate_quality_scores.sh pipeline
 
