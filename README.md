@@ -375,8 +375,8 @@ Here are several publicly available baseline EMA methods which users can comapre
 
 It is worth noting that CASP15_inhouse_dataset and CASP16_inhouse_dataset contain AlphaFold2-Multimer self-estimated confidence scores for the structural models in the two datasets. They can also serve as a baseline to be compared with new EMA methods. 
 
-## Acknowledgement
-PSBench builds upon the source code and data from the following projects::
+## Acknowledgements
+PSBench builds upon the source code and data from the following projects:
 - [AlphaFold2](https://github.com/google-deepmind/alphafold)
 - [AlphaFold3](https://github.com/google-deepmind/alphafold3) 
 - [USAlign](https://zhanggroup.org/US-align/)
