@@ -325,7 +325,7 @@ Output folder will have subdirectories for each target (eg. /path/to/PSBench/out
 ##### Required Arguments:
 | Argument       | Description                                                                                      |
 |----------------|--------------------------------------------------------------------------------------------------|
-| `--fasta_dir`  | Directory containing FASTA files for each target (e.g., `/path/to/fasta`)                        |
+| `--fasta_dir`  | Directory containing sequence files of protein targets in FASTA format (e.g., `/path/to/fasta`)                        |
 | `--pdb_dir`    | Directory containing predicted structural model subfolders (e.g., `/path/to/pdbs`)                      |
 | `--pkl_dir`    | Directory containing AlphaFold pickle (.pkl) subfolders (e.g., `/path/to/pkls`)                 |
 | `--outdir` | Directory where output CSV files will be saved (e.g., `/path/to/outdir`)                    |
