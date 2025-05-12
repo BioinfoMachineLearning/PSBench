@@ -196,7 +196,7 @@ The script generates a CSV file summarizing the evaluation results. Each row cor
 - *_loss: The difference between the quality score of the truely best model of a target and that of the top-ranked model selected by the predicted quality scores.
 - *_auroc: AUROC from ROC analysis, measuring how well the EMA method distinguishes high-quality models (top 25%) from others.
 
-Example of a output file:
+Example of an output file:
 
 ```
 target,PSS_pearson,PSS_spearman,PSS_loss,PSS_auroc,DProQA_pearson,DProQA_spearman,DProQA_loss,DProQA_auroc,VoroIF-GNN-score_pearson,VoroIF-GNN-score_spearman,VoroIF-GNN-score_loss,VoroIF-GNN-score_auroc,VoroIF-GNN-pCAD-score_pearson,VoroIF-GNN-pCAD-score_spearman,VoroIF-GNN-pCAD-score_loss,VoroIF-GNN-pCAD-score_auroc,VoroMQA-dark_pearson,VoroMQA-dark_spearman,VoroMQA-dark_loss,VoroMQA-dark_auroc,GCPNet-EMA_pearson,GCPNet-EMA_spearman,GCPNet-EMA_loss,GCPNet-EMA_auroc,GATE-AFM_pearson,GATE-AFM_spearman,GATE-AFM_loss,GATE-AFM_auroc,AFM-Confidence_pearson,AFM-Confidence_spearman,AFM-Confidence_loss,AFM-Confidence_auroc
