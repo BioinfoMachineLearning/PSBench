@@ -8,7 +8,7 @@ The datasets in PSBench can be downloaded from the Harvard Dataverse repository 
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
 
-## PSBench Installation
+## PSBench Installation (tested on Linux systems)
 
 ### Clone the repository
 ```
