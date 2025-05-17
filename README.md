@@ -147,7 +147,7 @@ python scripts/evaluate_QA.py \
 
 | Argument               | Description |
 |------------------------|-------------|
-| `--input_dir`              | Input directory with model quality prediction files that includes predicted quality scores by one or more EMA methods for each model |
+| `--input_dir`              | Input directory with model quality prediction files that include predicted quality scores by one or more EMA methods for each model. The predicted quaity scores will be evaluated against the true scores. |
 | `--native_dir`          | Directory containing the true model quality scores (labels) of structural models for each target. The true model quality scores are available in each of the benchmark datasets (CASP15_community_dataset, CASP15_inhouse_dataset, CASP16_inhouse_dataset, CASP16_community_dataset) downloaded from the Harvard Dataverse repository. |
 | `--true_score_field` | Name of the column in the true score file that contains the true quality score to be evaluated against. Default is `tmscore_usalign` |
 | `--ema_method`        | (Optional) The name of the EMA method column in the prediction file that you want to evaluate. If not provided, the script will evaluate the model quality prediction scores of all the EMA methods |
