@@ -21,7 +21,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.'''
 
 # -------------------------------------------------------------------------------------------------------------------------------------
-# Following code curated for PoseBench: (https://github.com/BioinfoMachineLearning/PSBench)
+# Following code curated for PSBench: (https://github.com/BioinfoMachineLearning/PSBench)
 # -------------------------------------------------------------------------------------------------------------------------------------
 
 
