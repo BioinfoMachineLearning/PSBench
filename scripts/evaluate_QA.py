@@ -103,7 +103,10 @@ def main():
     all_rows = []
 
     for i, target in enumerate(targets):
-        native_df = pd.read_csv(os.path.join(args.native_dir, target + '_quality_scores.csv'))
+        native_csv_path = os.path.join(args.native_dir, target + '_quality_scores.csv')
+        if not os.path.exists(native_csv_path):
+            continue
+        native_df = pd.read_csv(native_csv_path)
         row = {"target": target}
         for ema_method in ema_methods:
             result = process_target(target, ema_method, args, native_df)
