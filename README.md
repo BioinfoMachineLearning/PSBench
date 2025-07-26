@@ -12,8 +12,11 @@
   <a href="https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
   </a>
-  <a Project Status: Active – The project has reached a stable, usable state and is being actively developed.>
+  <a href="https://www.repostatus.org/#active">
     <img src="https://www.repostatus.org/badges/latest/active.svg" alt="Active">
+  </a>
+  <a href="[https://www.repostatus.org/#active](https://opensource.org/licenses/MIT)">
+    <img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="MIT">
   </a>
 </div>
 
