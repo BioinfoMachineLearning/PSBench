@@ -1,8 +1,5 @@
 <h1 align="center">PSBench</h1>
 
-[![Paper](http://img.shields.io/badge/arXiv-2405.14108-B31B1B.svg)]([https://arxiv.org/abs/2405.14108](https://arxiv.org/abs/2505.22674))
-[![Dataverse](https://img.shields.io/badge/dataverse-Dataset-blue)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/75SZ1U)
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
 
 <div align="center">
 
