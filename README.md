@@ -34,8 +34,8 @@ docker pull registry.scicore.unibas.ch/schwede/openstructure:latest
 # test OpenStructure installation 
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
-#### Colab tutorial for evaluating the EMA methods and comparative plots:
-[![Open PSBench_tutorial in Google Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
+#### Colab tutorial for evaluating the EMA methods and comparative plots
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
 
 ## I. Datasets for training and testing EMA methods
 PSBench consists of the following 4 complementary large datasets for training and testing EMA methods, which can be downloaded from the Harvard Dataverse repository above: 
