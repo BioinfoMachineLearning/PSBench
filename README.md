@@ -1,6 +1,4 @@
-<div align="center">
-# PSBench
-</div>
+<h1 align="center">PSBench</h1>
 
 A large-scale benchmark for developing and evaluating methods for estimating protein complex structural model accuracy (EMA). It includes five components: (I) datasets for training and evaluating EMA methods; (II) scripts to evaluate the prediction results of EMA methods on the datasets; (III) scripts to reproduce the benchmark results of the baseline EMA methods in PSBench; (IV) scripts to label new benchmark datasets; and (V) baseline EMA methods which users can compare their EMA methods with. 
 ![PSBench Pipeline, Methods and Metrics](imgs/pipeline_methods_metrics.png)
