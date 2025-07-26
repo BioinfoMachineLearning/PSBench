@@ -31,6 +31,14 @@ The datasets in PSBench can be downloaded from the Harvard Dataverse repository 
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
 
+## Colab tutorial
+A Google Colab tutorial to get started with the evaluation of EMA methods, reproduce manuscript results table, and comparative plots has been provided at:
+   <a href="https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
+  </a>
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
+
 ## PSBench Installation (tested on Linux systems)
 
 ### Clone the repository
@@ -57,8 +65,7 @@ docker pull registry.scicore.unibas.ch/schwede/openstructure:latest
 # test OpenStructure installation 
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
-#### Colab tutorial for evaluating the EMA methods and comparative plots
-[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
+
 
 ## I. Datasets for training and testing EMA methods
 PSBench consists of the following 4 complementary large datasets for training and testing EMA methods, which can be downloaded from the Harvard Dataverse repository above: 
