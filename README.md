@@ -1,9 +1,24 @@
 <h1 align="center">PSBench</h1>
-<h3 align="center">
+
 [![Paper](http://img.shields.io/badge/arXiv-2405.14108-B31B1B.svg)]([https://arxiv.org/abs/2405.14108](https://arxiv.org/abs/2505.22674))
 [![Dataverse](https://img.shields.io/badge/dataverse-Dataset-blue)](https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/75SZ1U)
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
-</h3>
+
+<div align="center">
+
+  <a href="https://arxiv.org/abs/2505.22674">
+    <img src="http://img.shields.io/badge/arXiv-2505.22674-B31B1B.svg" alt="Paper">
+  </a>
+  <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/75SZ1U">
+    <img src="https://img.shields.io/badge/dataverse-Dataset-blue" alt="Dataverse">
+  </a>
+  <a href="https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
+  </a>
+
+</div>
+
+
 ## Description
 A large-scale benchmark for developing and evaluating methods for estimating protein complex structural model accuracy (EMA). It includes five components: (I) datasets for training and evaluating EMA methods; (II) scripts to evaluate the prediction results of EMA methods on the datasets; (III) scripts to reproduce the benchmark results of the baseline EMA methods in PSBench; (IV) scripts to label new benchmark datasets; and (V) baseline EMA methods which users can compare their EMA methods with. 
 ![PSBench Pipeline, Methods and Metrics](imgs/pipeline_methods_metrics.png)
