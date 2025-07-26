@@ -12,7 +12,9 @@
   <a href="https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
   </a>
-
+  <a Project Status: Active – The project has reached a stable, usable state and is being actively developed.>
+    <img src="[https://colab.research.google.com/assets/colab-badge.svg](https://www.repostatus.org/badges/latest/active.svg)" alt="Open in Colab">
+  </a>
 </div>
 
 
