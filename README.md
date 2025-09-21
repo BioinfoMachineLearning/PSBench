@@ -1,5 +1,28 @@
-# PSBench
-A large-scale benchmark for developing and evaluating methods for estimating protein complex structural model accuracy (EMA). It includes four components: (I) datasets for training and evaluating EMA methods; (II) scripts to evaluate the prediction results of EMA methods on the datasets; (III) scripts to reproduce the benchmark results of the baseline EMA methods in PSBench; (IV) scripts to label new benchmark datasets; and (V) baseline EMA methods which users can compare their EMA methods with. 
+<h1 align="center">PSBench</h1>
+
+
+<div align="center">
+
+  <a href="https://arxiv.org/abs/2505.22674">
+    <img src="http://img.shields.io/badge/arXiv-2505.22674-B31B1B.svg" alt="Paper">
+  </a>
+  <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/75SZ1U">
+    <img src="https://img.shields.io/badge/dataverse-Dataset-blue" alt="Dataverse">
+  </a>
+  <a href="https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb">
+    <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
+  </a>
+  <a href="https://www.repostatus.org/#active">
+    <img src="https://www.repostatus.org/badges/latest/active.svg" alt="Active">
+  </a>
+  <a href="[https://www.repostatus.org/#active](https://opensource.org/licenses/MIT)">
+    <img src="https://img.shields.io/badge/license-MIT-yellow.svg" alt="MIT">
+  </a>
+</div>
+
+
+## Description
+A large-scale benchmark for developing and evaluating methods for estimating protein complex structural model accuracy (EMA). It includes five components: (I) datasets for training and evaluating EMA methods; (II) scripts to evaluate the prediction results of EMA methods on the datasets; (III) scripts to reproduce the benchmark results of the baseline EMA methods in PSBench; (IV) scripts to label new benchmark datasets; and (V) baseline EMA methods which users can compare their EMA methods with. 
 ![PSBench Pipeline, Methods and Metrics](imgs/pipeline_methods_metrics.png)
 
 ## Data Repository at Harvard Dataverse
@@ -7,6 +30,11 @@ The datasets in PSBench can be downloaded from the Harvard Dataverse repository 
 
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
+
+## Colab tutorial
+A Google Colab tutorial is provided to facilitate the evaluation of EMA methods, reproduce the main results table from the manuscript, and generate comparative performance plots:
+
+[![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
 
 ## PSBench Installation (tested on Linux systems)
 
@@ -34,6 +62,7 @@ docker pull registry.scicore.unibas.ch/schwede/openstructure:latest
 # test OpenStructure installation 
 docker run -it registry.scicore.unibas.ch/schwede/openstructure:latest --version
 ```
+
 
 ## I. Datasets for training and testing EMA methods
 PSBench consists of the following 4 complementary large datasets for training and testing EMA methods, which can be downloaded from the Harvard Dataverse repository above: 
@@ -147,7 +176,7 @@ python scripts/evaluate_QA.py \
 
 | Argument               | Description |
 |------------------------|-------------|
-| `--input_dir`              | Input directory with model quality prediction files that includes predicted quality scores by one or more EMA methods for each model |
+| `--input_dir`              | Input directory with model quality prediction files that include predicted quality scores by one or more EMA methods for each model. The predicted quaity scores will be evaluated against the true scores. |
 | `--native_dir`          | Directory containing the true model quality scores (labels) of structural models for each target. The true model quality scores are available in each of the benchmark datasets (CASP15_community_dataset, CASP15_inhouse_dataset, CASP16_inhouse_dataset, CASP16_community_dataset) downloaded from the Harvard Dataverse repository. |
 | `--true_score_field` | Name of the column in the true score file that contains the true quality score to be evaluated against. Default is `tmscore_usalign` |
 | `--ema_method`        | (Optional) The name of the EMA method column in the prediction file that you want to evaluate. If not provided, the script will evaluate the model quality prediction scores of all the EMA methods |
@@ -394,4 +423,12 @@ PSBench builds upon the source code and data from the following projects:
 
 
 ## Reference
-Neupane, P., Liu, J., Cheng, J. (2025) PSBench: a large-scale benchmark for estimating the accuracy of protein complex structural models. Submitted. 
+```bibtex
+@inproceedings{neupane2025psbench,
+  title     = {PSBench: a Large-Scale Benchmark for Estimating the Accuracy of Protein Complex Structural Models},
+  author    = {Neupane, Pawan and Liu, Jian and Cheng, Jianlin},
+  booktitle = {Advances in Neural Information Processing Systems},
+  year      = {2025},
+  note      = {to appear}
+}
+```
