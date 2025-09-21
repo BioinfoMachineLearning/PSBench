@@ -2,10 +2,12 @@
 
 
 <div align="center">
-
+  </a>
+    <a href="https://neurips.cc/virtual/2025/poster/121810">
+    <img src="https://img.shields.io/badge/NeurIPS-2025-4b44ce.svg" alt="Conference">
+  </a>
   <a href="https://arxiv.org/abs/2505.22674">
     <img src="http://img.shields.io/badge/arXiv-2505.22674-B31B1B.svg" alt="Paper">
-  </a>
   <a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/75SZ1U">
     <img src="https://img.shields.io/badge/dataverse-Dataset-blue" alt="Dataverse">
   </a>
