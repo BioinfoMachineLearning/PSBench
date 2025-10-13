@@ -23,7 +23,7 @@ SOFTWARE.
 LICENSE
 
 # -------------------------------------------------------------------------------------------------------------------------------------
-# Following code curated for PoseBench: (https://github.com/BioinfoMachineLearning/PSBench)
+# Following code curated for PSBench: (https://github.com/BioinfoMachineLearning/PSBench)
 # -------------------------------------------------------------------------------------------------------------------------------------
 
 #!/bin/bash
