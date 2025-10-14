@@ -14,6 +14,9 @@
   <a href="https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb">
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
   </a>
+  <a href="https://psbench-webserver.onrender.com/">
+    <img src="https://img.shields.io/badge/Web-PSBench-blue?style=for-the-badge" alt="Visit PSBench Web Server">
+</a>
   <a href="https://www.repostatus.org/#active">
     <img src="https://www.repostatus.org/badges/latest/active.svg" alt="Active">
   </a>
@@ -37,6 +40,10 @@ DOI : https://doi.org/10.7910/DVN/75SZ1U
 A Google Colab tutorial is provided to facilitate the evaluation of EMA methods, reproduce the main results table from the manuscript, and generate comparative performance plots:
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
+
+## Colab tutorial
+For third party model uploads and future references, a webserver is provided at :
+[![Visit PSBench Web Server](https://img.shields.io/badge/Web-PSBench-blue?style=for-the-badge)](https://psbench-webserver.onrender.com/)
 
 ## PSBench Installation (tested on Linux systems)
 
