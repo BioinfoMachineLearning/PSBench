@@ -15,7 +15,7 @@
     <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open in Colab">
   </a>
   <a href="https://psbench-webserver.onrender.com/">
-    <img src="https://img.shields.io/badge/Web-PSBench-blue?style=flat" alt="Visit PSBench Web Server" height="20">
+    <img src="https://img.shields.io/badge/web-PSBench-blue?style=flat" alt="Visit PSBench Web Server" height="20">
 </a>
   <a href="https://www.repostatus.org/#active">
     <img src="https://www.repostatus.org/badges/latest/active.svg" alt="Active">
@@ -43,7 +43,8 @@ A Google Colab tutorial is provided to facilitate the evaluation of EMA methods,
 
 ## Colab tutorial
 For third party model uploads and future references, a webserver is provided at :
-[![Visit PSBench Web Server](https://img.shields.io/badge/Web-PSBench-blue?style=flat)](https://psbench-webserver.onrender.com/)
+
+[![Visit PSBench Web Server](https://img.shields.io/badge/web-PSBench-blue?style=flat)](https://psbench-webserver.onrender.com/)
 
 ## PSBench Installation (tested on Linux systems)
 
