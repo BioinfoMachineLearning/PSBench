@@ -41,7 +41,7 @@ A Google Colab tutorial is provided to facilitate the evaluation of EMA methods,
 
 [![Open in Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/BioinfoMachineLearning/PSBench/blob/main/PSBench_tutorial.ipynb)
 
-## Colab tutorial
+## Webserver for third-party model upload
 For third party model uploads and future references, a webserver is provided at :
 
 [![Visit PSBench Web Server](https://img.shields.io/badge/web-PSBench-blue?style=flat)](https://psbench-webserver.onrender.com/)
