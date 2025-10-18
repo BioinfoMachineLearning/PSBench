@@ -355,7 +355,36 @@ Output folder will have subdirectories for each target (eg. /path/to/PSBench/out
 - results/ : directory where outputs of OpenStructure and USalign runs are saved
 - temp/ : temporary working directory for structure alignment and filtering process
 
+#### Preprocessing, edge cases and solutions
+<details>
 
+1. **Preprocessing**:
+   - Native structures are converted from CIF to PDB when needed  
+   - Native PDB structures are reindexed to match full-length protein sequences
+   - Non-protein components (e.g., ligands, metal ions) are excluded.
+   - Insertion codes in residue indices are replaced with monotonic numbering
+   
+   (See scripts/preprocessing for scripts)
+
+2. **Alignment & Quality Score Computation**:  
+   - Structures are aligned based on sequence identity.
+   - Scores like RMSD, lDDT are computed with no additional preprocessing.
+   - TM-scores are calculated using few approaches:  
+     - `tmscore_mmalign` (CASP16-style parameters)  
+     - `tmscore_usalign` (CASP15-style parameters)  
+     - Residue reindexing is applied for `tmscore_usalign_aligned` to ensure correct residue-residue correspondence
+
+3. **Edge Cases**:  
+   - Some models from CASP community datasets may fail due to format inconsistencies or non-monotonic residue numbering (e.g., `H1272TS191_1` from the `CASP16_community_dataset`)
+   - OpenStructure refuses to align chains that have less than six valid residues
+
+4. **Fallbacks & Exclusions**:  
+   - If OpenStructure fails but US-align succeeds, the model is retained and the TM-score from US-align is reported
+   - For example, in the `Multimer_7_2024_8_2025_dataset`, some targets like `9DYY`, `9KAP`, and `9O7J` fail in OpenStructure due to having fewer than six valid residues. The USalign-based TM-scores are still included
+   - Models that fail in both frameworks are excluded. Such failures are rare (less than 20 out of 1 million processed models)
+
+
+</details>
 
 #### Optional : Generate AlphaFold features when available
 
