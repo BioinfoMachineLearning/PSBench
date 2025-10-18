@@ -381,7 +381,7 @@ Output folder will have subdirectories for each target (eg. /path/to/PSBench/out
 4. **Fallbacks & Exclusions**:  
    - If OpenStructure fails but US-align succeeds, the model is retained and the TM-score from US-align is reported
    - For example, in the `Multimer_7_2024_8_2025_dataset`, some targets like `9DYY`, `9KAP`, and `9O7J` fail in OpenStructure due to having fewer than six valid residues. The USalign-based TM-scores are still included
-   - Models that fail in both frameworks are excluded. Such failures are rare (less than 20 out of 1 million processed models)
+   - Models that fail in both frameworks are excluded. Such failures are rare (less than 0.002% out of more than 1.4 million processed models)
 
 
 </details>
