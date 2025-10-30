@@ -36,6 +36,10 @@ The datasets in PSBench can be downloaded from the Harvard Dataverse repository 
 
 DOI : https://doi.org/10.7910/DVN/75SZ1U
 
+PSBench has also integrated four datasets, featuring both community and in-house structural models for monomeric protein targets from the CASP15 and CASP16 competitions. The dataset can be downloaded from another Harvard Dataverse repository here: https://dataverse.harvard.edu/dataset.xhtml?persistentId=doi:10.7910/DVN/8GI1DP
+
+DOI : https://doi.org/10.7910/DVN/8GI1DP
+
 ## Colab tutorial
 A Google Colab tutorial is provided to facilitate the evaluation of EMA methods, reproduce the main results table from the manuscript, and generate comparative performance plots:
 
