@@ -476,7 +476,6 @@ PSBench builds upon the source code and data from the following projects:
   title     = {PSBench: a Large-Scale Benchmark for Estimating the Accuracy of Protein Complex Structural Models},
   author    = {Neupane, Pawan and Liu, Jian and Cheng, Jianlin},
   booktitle = {The Thirty-Ninth Annual Conference on Neural Information Processing Systems (NeurIPS)},
-  year      = {2025},
-  note      = {to appear}
+  year      = {2025}
 }
 ```
